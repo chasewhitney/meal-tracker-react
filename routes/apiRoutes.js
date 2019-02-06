@@ -1,3 +1,5 @@
+//// Nutritionix API routes ////
+
 const keys = require('../config/keys');
 const request = require('request');
 

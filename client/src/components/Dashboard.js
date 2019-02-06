@@ -1,29 +1,48 @@
+//// Landing page after login ////
+
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+import Dropdown from './Dropdown';
 
 class Dashboard extends Component {
-
   state = { term : '' };
 
   onInputChange = ({ target }) => {
-    this.setState({ term : target.value });
+    const term = target.value;
+    this.setState({ term : term });
+
+    if(term.length >= 3) {
+      console.log(term);
+      this.props.fetchApiAll(term);
+    }
   }
 
-  hasThree = () => {
-    const { term } = this.state;
-    console.log('has three:', term);
-    if(term.length >= 3) {
-      const config = {params: {searchQuery: term}};
-      axios.get('api/instant', config).then(response => {
-        console.log(response);
-      });
-    }
+    // Branded dropdown
+    // ID: nix_item_id
+    // food_name
+    // photo.thumb
+    // brand_name
+    // serving_qty
+    // serving_unit
+    // nf_calories
 
+    // Common dropdown
+    // ID: food_name
+    // food_name
+    // photo.thumb
+  // }
+
+  logState = () => {
+    console.log(this.state);
+    console.log(this.props);
   }
 
   render() {
     return (
       <div>
+        <button onClick={this.logState}>Log State</button>
         Dashboard
         <input placeholder="Search for info"
           value={this.state.term}
@@ -31,10 +50,15 @@ class Dashboard extends Component {
           style={{"backgroundColor": "grey"}}
           />
         Term: {this.state.term}
-        {this.hasThree()}
+        <Dropdown />
+
       </div>
     )
   }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return {...state};
+}
+
+export default connect(mapStateToProps, actions)(Dashboard);

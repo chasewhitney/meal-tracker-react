@@ -1,3 +1,5 @@
+//// Top render component ////
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';

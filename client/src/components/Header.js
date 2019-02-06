@@ -1,3 +1,5 @@
+//// Application header ////
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -22,7 +24,7 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
         <Link
-          to={this.props.auth ? '/surveys' : '/'}
+          to={this.props.auth ? '/dashboard' : '/'}
           className="left brand-logo"
         >
           FoodTracker

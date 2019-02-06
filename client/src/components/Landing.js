@@ -1,3 +1,5 @@
+//// Landing page before login ////
+
 import React from 'react';
 
 export default () => {
