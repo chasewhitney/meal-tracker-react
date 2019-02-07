@@ -13,7 +13,25 @@ export const fetchUser = () => async dispatch => {
 export const fetchApiAll = (term) => async dispatch => {
 
   const config = {params: {searchQuery: term}};
-  const res = await axios.get('api/instant', config);
+  let res = await axios.get('api/instant', config);
 
-  dispatch({type: FETCH_API_ALL, payload: res.data});
+  const filteredData = {};
+
+  for (var arr in res.data) {
+      if (res.data.hasOwnProperty(arr)) {
+          res.data[arr].splice(10,10);
+
+          // Passes desired properties
+          if(arr === "branded") {
+            filteredData.branded = res.data[arr].map(({food_name, photo, brand_name, serving_qty, serving_unit, nf_calories}) => ({food_name, photo, brand_name, serving_qty, serving_unit, nf_calories}));
+          }
+          if(arr === "common") {
+            filteredData.common = res.data[arr].map(({food_name, photo}) => ({food_name, photo}));
+          }
+      }
+  }
+
+
+  console.log('FD:', filteredData);
+  dispatch({type: FETCH_API_ALL, payload: filteredData});
 }

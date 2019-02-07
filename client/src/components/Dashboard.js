@@ -32,7 +32,6 @@ class Dashboard extends Component {
     // ID: food_name
     // food_name
     // photo.thumb
-  // }
 
   logState = () => {
     console.log(this.state);
