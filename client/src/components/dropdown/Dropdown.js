@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import AllTab from './AllTab';
+import CommonTab from './CommonTab';
+import BrandedTab from './BrandedTab';
+
 const Tabs = styled.div`
 
   overflow: hidden;
@@ -115,6 +119,8 @@ class Dropdown extends Component {
     this.setState(prevState => ({ tab: e.target.value, prevTab: prevState.tab}));
   }
 
+
+
   render(){
     return (
           <Tabs focused={this.state}>
@@ -122,19 +128,19 @@ class Dropdown extends Component {
               <Label className="tab__label-1" htmlFor="tab-1">All</Label>
               <Radio onChange={this.handleChange} id="tab-1" name="tabs" value="1" type="radio" defaultChecked />
               <TabContent className="tab__content-1">
-                <p>CONTENT ONE</p>
+                <AllTab />
               </TabContent>
 
               <Label className="tab__label-2" htmlFor="tab-2">Branded</Label>
               <Radio onChange={this.handleChange} id="tab-2" name="tabs" value="2" type="radio" />
               <TabContent className="tab__content-2">
-                <p>CONTENT TWO</p>
+                <BrandedTab />
               </TabContent>
 
               <Label className="tab__label-3" htmlFor="tab-3">Common</Label>
               <Radio onChange={this.handleChange} id="tab-3" name="tabs" value="3" type="radio" />
               <TabContent className="tab__content-3">
-                <p>CONTENT THREE</p>
+                <CommonTab />
               </TabContent>
 
           </Tabs>

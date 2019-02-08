@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actions from '../actions';
 
-import Dropdown from './Dropdown';
+import Dropdown from './dropdown/Dropdown';
 
 class Dashboard extends Component {
   state = { term : '', focus: false };
@@ -38,7 +38,8 @@ class Dashboard extends Component {
       // photo.thumb
 
   renderDropdown = () => {
-    if(this.state.term.length >= 3) {
+    if(this.state.term.length >= 3 && this.props.apiAll) {
+      console.log('rendering dropdown');
       return <Dropdown />
     }
   }
