@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 const Container = styled.div`
+
+`;
+
+const Tabs = styled.div`
+
+  overflow: hidden;
+
   background: #191828;
   color: #efedef;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -11,24 +18,16 @@ const Container = styled.div`
   font-weight: 300;
   line-height: 1.6em;
   margin: 0;
-  padding: 100px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+  padding-bottom: 3rem;
 
   button:focus,
   input:focus,
   textarea:focus,
   select:focus {
     outline: none; }
-`;
-
-const Tabs = styled.div`
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30vw;
-  overflow: hidden;
-  text-align: center;
 
   display:grid;
   grid-template-columns: repeat(3,1fr);
@@ -122,29 +121,27 @@ class Dropdown extends Component {
 
   render(){
     return (
-        <Container>
           <Tabs focused={this.state}>
 
-              <Label className="tab__label-1" htmlFor="tab-1">One</Label>
+              <Label className="tab__label-1" htmlFor="tab-1">All</Label>
               <Radio onChange={this.handleChange} id="tab-1" name="tabs" value="1" type="radio" defaultChecked />
               <TabContent className="tab__content-1">
                 <p>CONTENT ONE</p>
               </TabContent>
 
-              <Label className="tab__label-2" htmlFor="tab-2">Two</Label>
+              <Label className="tab__label-2" htmlFor="tab-2">Branded</Label>
               <Radio onChange={this.handleChange} id="tab-2" name="tabs" value="2" type="radio" />
               <TabContent className="tab__content-2">
                 <p>CONTENT TWO</p>
               </TabContent>
 
-              <Label className="tab__label-3" htmlFor="tab-3">Three</Label>
+              <Label className="tab__label-3" htmlFor="tab-3">Common</Label>
               <Radio onChange={this.handleChange} id="tab-3" name="tabs" value="3" type="radio" />
               <TabContent className="tab__content-3">
                 <p>CONTENT THREE</p>
               </TabContent>
 
           </Tabs>
-        </Container>
     )
   }
 
