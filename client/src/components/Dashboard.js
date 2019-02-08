@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import * as actions from '../actions';
 
 import Dropdown from './Dropdown';
@@ -9,13 +10,15 @@ import Dropdown from './Dropdown';
 class Dashboard extends Component {
   state = { term : '', focus: false };
 
+  fetchApiAll = _.debounce((term) => { this.props.fetchApiAll(term) }, 300 );
+
   handleInputChange = ({ target }) => {
     const term = target.value;
     this.setState({ term : term });
 
     if(term.length >= 3) {
       console.log(term);
-      this.props.fetchApiAll(term);
+      this.fetchApiAll(term);
     }
   }
 
