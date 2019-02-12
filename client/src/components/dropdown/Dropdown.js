@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import AllTab from './AllTab';
-import CommonTab from './CommonTab';
-import BrandedTab from './BrandedTab';
+// import AllTab from './AllTab';
+import CommonContent from './CommonContent';
+import BrandedContent from './BrandedContent';
 
 const Tabs = styled.div`
 
@@ -13,15 +13,13 @@ const Tabs = styled.div`
 
   background: #191828;
   color: #efedef;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.6em;
+  border: 1px solid black;
+
   margin: 0;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  padding-bottom: 3rem;
+  width:100%;
 
   button:focus,
   input:focus,
@@ -80,10 +78,6 @@ const Label = styled.label`
   font-weight: 300;
   padding: 2rem 0;
   width: 100%;
-
-  &:hover, &:focus {
-    font-size: 1.4rem;
-  }
 `;
 
 const Radio = styled.input`
@@ -102,8 +96,7 @@ const TabContent = styled.div`
   margin-left: -200%;
   display: block;
   opacity: 0;
-  padding: 2rem 0;
-  width: 90%;
+  width: 100%;
   transition: margin-left 0.4s ease-in-out;
   background-color: green;
 
@@ -128,19 +121,20 @@ class Dropdown extends Component {
               <Label className="tab__label-1" htmlFor="tab-1">All</Label>
               <Radio onChange={this.handleChange} id="tab-1" name="tabs" value="1" type="radio" defaultChecked />
               <TabContent className="tab__content-1">
-                <AllTab />
+                <CommonContent foodList={this.props.apiAll.all.common} />
+                <BrandedContent foodList={this.props.apiAll.all.branded} />
               </TabContent>
 
               <Label className="tab__label-2" htmlFor="tab-2">Branded</Label>
               <Radio onChange={this.handleChange} id="tab-2" name="tabs" value="2" type="radio" />
               <TabContent className="tab__content-2">
-                <BrandedTab />
+                <BrandedContent foodList={this.props.apiAll.branded} />
               </TabContent>
 
               <Label className="tab__label-3" htmlFor="tab-3">Common</Label>
               <Radio onChange={this.handleChange} id="tab-3" name="tabs" value="3" type="radio" />
               <TabContent className="tab__content-3">
-                <CommonTab />
+                <CommonContent foodList={this.props.apiAll.common} />
               </TabContent>
 
           </Tabs>

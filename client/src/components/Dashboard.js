@@ -3,9 +3,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import styled from 'styled-components';
 import * as actions from '../actions';
 
 import Dropdown from './dropdown/Dropdown';
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const Sidebar = styled.div`
+  background-color: yellow;
+  flex: 0 1 25%;
+`;
+
+const Main = styled.div`
+  background-color: green;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+`;
+
+const Inputs = styled.div`
+  background-color: red;
+  padding: 1.5rem;
+
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ApiSearch = styled.input`
+  width: 100%;
+  height: 3rem;
+`;
+
+const AddMeal = styled.button`
+`;
+
+const ApiBox = styled.div`
+  width: 40rem;
+  position: relative;
+`;
+
+const DropdownContainer = styled.div`
+  position: absolute;
+  display: block;
+  top: 3rem;
+  left: 0;
+  width: 100%;
+`;
 
 class Dashboard extends Component {
   state = { term : '', focus: false };
@@ -22,21 +69,6 @@ class Dashboard extends Component {
     }
   }
 
-
-      // Branded dropdown
-      // ID: nix_item_id
-      // food_name
-      // photo.thumb
-      // brand_name
-      // serving_qty
-      // serving_unit
-      // nf_calories
-
-      // Common dropdown
-      // ID: food_name
-      // food_name
-      // photo.thumb
-
   renderDropdown = () => {
     if(this.state.term.length >= 3 && this.props.apiAll) {
       console.log('rendering dropdown');
@@ -46,7 +78,7 @@ class Dashboard extends Component {
 
   logState = () => {
     console.log(this.state);
-    // console.log(this.props);
+    console.log(this.props);
   }
 
   clearSearch = () => {
@@ -56,30 +88,39 @@ class Dashboard extends Component {
   toggleFocus = () => {
     this.setState({ focus: !this.state.focus});
 
-      setTimeout(function(){
-        if(!this.state.focus){
-          console.log('clearing search!');
-          this.clearSearch();
-        }
-      }.bind(this), 100);
+      // setTimeout(function(){
+      //   if(!this.state.focus){
+      //     console.log('clearing search!');
+      //     this.clearSearch();
+      //   }
+      // }.bind(this), 100);
   }
 
   render() {
     return (
-      <div>
-        <div>
-          <button onClick={this.logState}>Log State</button>
-        </div>
-        <div>Dashboard</div>
-        <div onFocus={this.toggleFocus} onBlur={this.toggleFocus} tabIndex="0">
-          <input placeholder="Search for info"
-            value={this.state.term}
-            onChange={this.handleInputChange}
-            autoComplete="off"
-            />
-          {this.renderDropdown()}
-        </div>
-      </div>
+      <Container>
+        <Sidebar>
+          <h2>Quick Picks</h2>
+        </Sidebar>
+        <Main>
+          <Inputs>
+            <AddMeal>Add a meal</AddMeal>
+            <button onClick={this.logState}>Log State</button>
+            <ApiBox onFocus={this.toggleFocus} onBlur={this.toggleFocus} tabIndex="0">
+              <ApiSearch placeholder="Search for info"
+                value={this.state.term}
+                onChange={this.handleInputChange}
+                autoComplete="off"
+                />
+              <DropdownContainer>{this.renderDropdown()}</DropdownContainer>
+            </ApiBox>
+          </Inputs>
+          <div className="data">
+            TODAY'S MEALS
+          </div>
+
+        </Main>
+      </Container>
     )
   }
 }

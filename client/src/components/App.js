@@ -4,10 +4,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import * as actions from '../actions';
+import styled from 'styled-components';
 
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+
+const AppContainer = styled.div`
+
+`;
 
 class App extends Component {
   componentDidMount() {
@@ -16,11 +21,11 @@ class App extends Component {
   render(){
     return(
       <BrowserRouter>
-        <div className="container">
+        <AppContainer>
           <Header />
           <Route exact path='/' component={Landing} />
           <Route exact path='/dashboard' component={Dashboard} />
-        </div>
+        </AppContainer>
       </ BrowserRouter>
     )
   }

@@ -4,6 +4,48 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import styled from 'styled-components';
+
+
+
+const NavContainer = styled.div`
+  padding: 0;
+  margin: 0;
+  background-color: #28b485;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+`;
+
+const Logo = styled(Link)`
+  text-decoration: none;
+  font-size: 3.5rem;
+  color: white;
+  margin: 1rem;
+`;
+
+const NavItem = styled.div`
+  padding: 0;
+  margin: 0;
+  font-size: 2.5rem;
+  list-style: none;
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  a, a:visited, a:active {
+    text-decoration: none;
+    color: #eee;
+  }
+
+  &:hover {
+    background-color: #55c57a;
+  }
+
+`;
+
 
 class Header extends Component {
   renderContent() {
@@ -12,26 +54,20 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <li><a href='/auth/google'>Login with Google</a></li>;
+        return <NavItem><a href='/auth/google'>Login with Google</a></NavItem>;
       default:
-        return <li><a href="/api/logout">Logout</a></li>;
+        return <NavItem><a href="/api/logout">Logout</a></NavItem>;
     }
   }
 
   render(){
     return (
-
-      <nav>
-        <div className="nav-wrapper">
-        <Link
-          to={this.props.auth ? '/dashboard' : '/'}
-          className="left brand-logo"
-        >
-          FoodTracker
-        </Link>
-        <ul className="right">{this.renderContent()}</ul>
-        </div>
-      </nav>
+      <NavContainer>
+          <Logo to={this.props.auth ? '/dashboard' : '/'}>
+            FoodTracker
+          </Logo>
+        {this.renderContent()}
+      </NavContainer>
 
     )
   }
