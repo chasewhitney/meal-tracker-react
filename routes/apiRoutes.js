@@ -11,7 +11,7 @@ module.exports = app => {
     console.log('searchQuery:', searchQuery);
 
     const options = {
-      url: 'https://trackapi.nutritionix.com/v2/search/instant?detailed=true&query=' + searchQuery,
+      url: `https://trackapi.nutritionix.com/v2/search/instant?detailed=true&query=${searchQuery}`,
       headers: {
         'x-app-id': keys.nutriId,
         'x-app-key': keys.nutriKey
@@ -29,7 +29,7 @@ module.exports = app => {
   });
 
   // GET SELECTED COMMON ITEM
-  app.get('/common', (req, res) => {
+  app.get('/api/common', (req, res) => {
   console.log('req.body:', req.body);
 
   const {toQuery} = req.query;
@@ -37,8 +37,8 @@ module.exports = app => {
     url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
     method: 'POST',
     headers: {
-      'x-app-id': appId,
-      'x-app-key': apiKey
+      'x-app-id': keys.nutriId,
+      'x-app-key': keys.nutriKey
     },
     body: {
       "query" : toQuery
@@ -58,15 +58,15 @@ module.exports = app => {
 });
 
 // GET SELECTED BRANDED ITEM
-app.get('/branded', (req, res) => {
+app.get('/api/branded', (req, res) => {
   console.log('req.query:', req.query);
 
   const { toQuery } = req.query;
   const options = {
-    url: 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id=' + toQuery,
+    url: `https://trackapi.nutritionix.com/v2/search/item?nix_item_id=${toQuery}`,
     headers: {
-      'x-app-id': appId,
-      'x-app-key': apiKey
+      'x-app-id': keys.nutriId,
+      'x-app-key': keys.nutriKey
     }
   };
 

@@ -26,7 +26,7 @@ export default (props) => {
       <h2>Common</h2>
       {props.foodList.map(item => {
         return (
-          <CommonCell key={item.food_name}>
+          <CommonCell key={item.food_name} onClick={() => props.onClick(item.food_name, "common")}>
             <img src={item.photo.thumb} alt="Food" />
             <span>{item.food_name}</span>
           </CommonCell>

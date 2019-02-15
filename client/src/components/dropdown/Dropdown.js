@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import * as actions from '../../actions';
 
 // import AllTab from './AllTab';
 import CommonContent from './CommonContent';
@@ -112,7 +113,10 @@ class Dropdown extends Component {
     this.setState(prevState => ({ tab: e.target.value, prevTab: prevState.tab}));
   }
 
-
+ handleClick = (id, type) => {
+   console.log('clicked:', type, id);
+   this.props.fetchApiItem(id, type);
+ }
 
   render(){
     return (
@@ -121,20 +125,20 @@ class Dropdown extends Component {
               <Label className="tab__label-1" htmlFor="tab-1">All</Label>
               <Radio onChange={this.handleChange} id="tab-1" name="tabs" value="1" type="radio" defaultChecked />
               <TabContent className="tab__content-1">
-                <CommonContent foodList={this.props.apiAll.all.common} />
-                <BrandedContent foodList={this.props.apiAll.all.branded} />
+                <CommonContent foodList={this.props.apiAll.all.common} onClick={this.handleClick} />
+                <BrandedContent foodList={this.props.apiAll.all.branded} onClick={this.handleClick} />
               </TabContent>
 
               <Label className="tab__label-2" htmlFor="tab-2">Branded</Label>
               <Radio onChange={this.handleChange} id="tab-2" name="tabs" value="2" type="radio" />
               <TabContent className="tab__content-2">
-                <BrandedContent foodList={this.props.apiAll.branded} />
+                <BrandedContent foodList={this.props.apiAll.branded} onClick={this.handleClick} />
               </TabContent>
 
               <Label className="tab__label-3" htmlFor="tab-3">Common</Label>
               <Radio onChange={this.handleChange} id="tab-3" name="tabs" value="3" type="radio" />
               <TabContent className="tab__content-3">
-                <CommonContent foodList={this.props.apiAll.common} />
+                <CommonContent foodList={this.props.apiAll.common} onClick={this.handleClick}/>
               </TabContent>
 
           </Tabs>
@@ -147,4 +151,4 @@ function mapStateToProps(state){
   return state;
 }
 
-export default connect(mapStateToProps)(Dropdown);
+export default connect(mapStateToProps, actions)(Dropdown);

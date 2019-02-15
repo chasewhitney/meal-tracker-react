@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
-import apiReducer from './apiReducer';
+import apiAllReducer from './apiAllReducer';
+import apiItemReducer from './apiItemReducer';
 
 export default combineReducers({
   auth: authReducer,
-  apiAll: apiReducer
+  apiAll: apiAllReducer,
+  apiItem: apiItemReducer
 });

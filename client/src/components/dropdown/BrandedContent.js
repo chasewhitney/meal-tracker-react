@@ -43,7 +43,7 @@ export default (props) => {
       <h2>Branded</h2>
       {props.foodList.map(item => {
         return (
-          <BrandedCell key={item.nix_item_id}>
+          <BrandedCell key={item.nix_item_id} onClick={() => {props.onClick(item.nix_item_id, "branded")}}>
             <img src={item.photo.thumb} alt="Food" />
             <span className="name">{item.food_name}</span>
             <span className="brand">{item.brand_name}, {item.serving_qty}{item.serving_unit}</span>
