@@ -5,7 +5,8 @@ const BrandedCell = styled.div`
   background-color: #ffffff;
   color: black;
   padding: 1rem;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  border-top: none;
   font-size: 1.5rem;
 
   display: grid;
@@ -37,10 +38,20 @@ const BrandedCell = styled.div`
   }
 `;
 
+const CellContainer = styled.div`
+  pointer-events: auto;
+`;
+
+const Header = styled.h2`
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+`;
+
 export default (props) => {
   return (
-    <div>
-      <h2>Branded</h2>
+    <CellContainer>
+      <Header>Branded</Header>
       {props.foodList.map(item => {
         return (
           <BrandedCell key={item.nix_item_id} onClick={() => {props.onClick(item.nix_item_id, "branded")}}>
@@ -52,5 +63,5 @@ export default (props) => {
         );
       })
     }
-  </div>);
+  </CellContainer>);
 }

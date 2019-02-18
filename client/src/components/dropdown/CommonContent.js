@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const CommonCell = styled.div`
@@ -8,7 +8,8 @@ const CommonCell = styled.div`
   background-color: #ffffff;
   color: black;
   padding: 1rem;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  border-top: none;
 
   & img {
     height: 40px;
@@ -20,18 +21,39 @@ const CommonCell = styled.div`
   }
 `;
 
-export default (props) => {
-  return (
-    <div>
-      <h2>Common</h2>
-      {props.foodList.map(item => {
-        return (
-          <CommonCell key={item.food_name} onClick={() => props.onClick(item.food_name, "common")}>
-            <img src={item.photo.thumb} alt="Food" />
-            <span>{item.food_name}</span>
-          </CommonCell>
-        );
-      })}
-    </div>
-  );
+const CellContainer = styled.div`
+`;
+
+const Header = styled.h2`
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+  border-top: none;
+`;
+
+class CommonContent extends Component {
+  componentDidMount() {
+    console.log('CommonContent mounted');
+    if(this.props.Updater){
+      this.props.Updater();
+    }
+  }
+
+  render() {
+    return (
+      <CellContainer>
+        <Header>Common</Header>
+        {this.props.foodList.map(item => {
+          return (
+            <CommonCell key={item.food_name} onClick={() => this.props.onClick(item.food_name, "common")}>
+              <img src={item.photo.thumb} alt="Food" />
+              <span>{item.food_name}</span>
+            </CommonCell>
+          );
+        })}
+      </CellContainer>
+    );
+  }
 }
+
+export default CommonContent;
