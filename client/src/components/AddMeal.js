@@ -1,12 +1,14 @@
 //// Landing page after login ////
 
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import styled from 'styled-components';
 import * as actions from '../actions';
 
 import Dropdown from './dropdown/Dropdown';
+import NewMealForm from './NewMealForm';
 
 const Inputs = styled.div`
   background-color: red;
@@ -43,27 +45,20 @@ const DropdownContainer = styled.div`
 
 const Popup = styled.div`
   position: fixed;
-  background-color: orange;
+  background-color: rgba(0,0,0,.80);
   height: 100vh;
   width: 100vw;
   top: 0;
   left: 0;
   z-index: 9999;
 
-  & div {
-    position: absolute;
-    height: 75%;
-    width: 75%;
-    left: 50%;
-    top: 50%;
-    background-color: green;
-    transform: translate(-50%, -50%);
-  }
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 class AddMeal extends Component {
-  state = { term : '', focus: false, popup: false };
+  state = { term : '', focus: false, popup: false, toFetch: {id: '', type: ''} };
 
   fetchApiAll = _.debounce((term) => { this.props.fetchApiAll(term) }, 300 );
 
@@ -104,35 +99,40 @@ class AddMeal extends Component {
       // }.bind(this), 100);
   }
 
+  renderPopup = () => {
+    if(this.state.popup)
+    return (
+      <Popup onClick={this.handleClickPopup}>
+        <NewMealForm addItem={this.state.toFetch} onSubmit={this.submitNewMeal}/>
+      </Popup>
+    );
+  }
+
+  submitNewMeal = (e, itemToAdd) => {
+    e.preventDefault();
+    console.log('in submitNewMeal:', itemToAdd);
+    this.props.submitNewMeal(itemToAdd);
+  }
+
+  handleDropdownClick = (id, type) => {
+    this.setState({toFetch: {id, type}, popup: true});
+  }
+
+  handleCreateMealClick= () => {
+    this.setState({toFetch: {id: '', type:''}, popup: true});
+  }
+
   handleClickPopup = (e) => {
     if(e.currentTarget === e.target) {
       this.setState({popup: false});
     }
   }
 
-  renderPopup = () => {
-    if(this.state.popup)
-    return (
-      <Popup onClick={this.handleClickPopup}>
-        <div>IM CONTENT</div>
-      </Popup>
-    );
-  }
-
-  handleDropdownClick = (id, type) => {
-    // console.log('clicked:', type, id);
-    this.props.fetchApiItem(id, type);
-    this.togglePopup();
-  }
-
-  togglePopup = () => {
-    this.setState(prevState => ({popup: !prevState.popup}));
-  }
-
   render() {
     return (
           <Inputs>
-            <AddMealButton onClick={this.togglePopup}>Add a meal</AddMealButton>
+            {this.renderPopup()}
+            <AddMealButton onClick={this.handleCreateMealClick}>Add a meal</AddMealButton>
             <button onClick={this.logState}>Log State</button>
             <ApiBox onFocus={this.toggleFocus} onBlur={this.toggleFocus} tabIndex="0">
               <ApiSearch placeholder="Search for info"
@@ -152,4 +152,4 @@ function mapStateToProps(state) {
   return {...state};
 }
 
-export default connect(mapStateToProps, actions)(AddMeal);
+export default reduxForm({form: 'mealForm'})(connect(mapStateToProps, actions)(AddMeal));

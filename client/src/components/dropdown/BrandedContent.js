@@ -5,8 +5,6 @@ const BrandedCell = styled.div`
   background-color: #ffffff;
   color: black;
   padding: 1rem;
-  border: 1px solid black;
-  border-top: none;
   font-size: 1.5rem;
 
   display: grid;
@@ -45,7 +43,6 @@ const CellContainer = styled.div`
 const Header = styled.h2`
   background-color: #ffffff;
   color: black;
-  border: 1px solid black;
 `;
 
 export default (props) => {
@@ -57,7 +54,7 @@ export default (props) => {
           <BrandedCell key={item.nix_item_id} onClick={() => {props.onClick(item.nix_item_id, "branded")}}>
             <img src={item.photo.thumb} alt="Food" />
             <span className="name">{item.food_name}</span>
-            <span className="brand">{item.brand_name}, {item.serving_qty}{item.serving_unit}</span>
+            <span className="brand">{item.brand_name}, {item.serving_qty.toPrecision(2)}{item.serving_unit}</span>
             <span className="cal">{Math.round(item.nf_calories)} cal</span>
           </BrandedCell>
         );

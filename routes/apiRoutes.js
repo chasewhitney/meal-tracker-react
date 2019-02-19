@@ -3,6 +3,8 @@
 const keys = require('../config/keys');
 const request = require('request');
 
+console.log('api routes loaded');
+
 module.exports = app => {
 
   // GET INSTANT DROPDOWN LIST

@@ -14,9 +14,8 @@ const Tabs = styled.div`
   left: 0;
   overflow: hidden;
   color: red;
-  background-color: yellow;
-  border: 2px solid red;
   width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
   display: flex;
   flex-direction: column;
@@ -24,13 +23,13 @@ const Tabs = styled.div`
 `;
 
 const Label = styled.label`
-  color: #fff;
+  color: black;
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: 300;
   padding: 2rem 0;
   width: 50%;
-  background-color: black;
+  background-color: white;
   text-align: center;
 
   &:hover{
@@ -44,7 +43,6 @@ const TabContent = styled.div`
   left: 0;
   opacity: 0;
   width: 100%;
-  background-color:red;
   margin-left: -100%;
 
   transition: margin-left .375s ease-in-out;
@@ -58,7 +56,6 @@ const LabelContainer = styled.div`
 const ContentContainer = styled.div.attrs()`
   position: relative;
   width: 100%;
-  background-color: yellowgreen;
   overflow: hidden;
   height: ${props => props.size}px;
 
@@ -87,7 +84,6 @@ const FocusBar = styled.div.attrs(({width, tab}) => ({
 }))`
   position: relative;
   height: 4px;
-  background-color: grey;
   width: 100%;
 
   &.left {
@@ -108,7 +104,7 @@ const FocusBar = styled.div.attrs(({width, tab}) => ({
     bottom: 0;
     left: ${props => props.left}px;
     right: ${props => props.right}px;
-    background-color: yellow;
+    background-color: red;
     transition: inherit;
   }
 `;
@@ -120,9 +116,9 @@ class Dropdown extends Component {
   divWidths = [];
 
   componentDidMount() {
-    console.log('Dropdown Mounted setting:');
-    console.log('size:',  this.divHeights[this.state.tab].clientHeight);
-    console.log('width:', this.divWidths[0].clientWidth);
+    // console.log('Dropdown Mounted setting:');
+    // console.log('size:',  this.divHeights[this.state.tab].clientHeight);
+    // console.log('width:', this.divWidths[0].clientWidth);
     this.setState({
       size: this.divHeights[this.state.tab].clientHeight,
       width: this.divWidths[0].clientWidth
@@ -130,8 +126,8 @@ class Dropdown extends Component {
   }
 
   componentDidUpdate() {
-    console.log('updated Dropdown, tab:', this.state.tab);
-    console.log('this.divHeights', this.divHeights);
+    // console.log('updated Dropdown, tab:', this.state.tab);
+    // console.log('this.divHeights', this.divHeights);
     if(this.state.size != this.divHeights[this.state.tab].clientHeight){
       this.setState({size: this.divHeights[this.state.tab].clientHeight});
     }

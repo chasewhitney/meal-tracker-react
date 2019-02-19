@@ -8,8 +8,7 @@ const CommonCell = styled.div`
   background-color: #ffffff;
   color: black;
   padding: 1rem;
-  border: 1px solid black;
-  border-top: none;
+
 
   & img {
     height: 40px;
@@ -27,17 +26,9 @@ const CellContainer = styled.div`
 const Header = styled.h2`
   background-color: #ffffff;
   color: black;
-  border: 1px solid black;
-  border-top: none;
 `;
 
 class CommonContent extends Component {
-  componentDidMount() {
-    console.log('CommonContent mounted');
-    if(this.props.Updater){
-      this.props.Updater();
-    }
-  }
 
   render() {
     return (

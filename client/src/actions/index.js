@@ -28,11 +28,52 @@ export const fetchApiAll = (term) => async dispatch => {
   dispatch({type: FETCH_API_ALL, payload: data});
 }
 
+///////// PRODUCTION ///////////////
 // Fetches data on single API items
-export const fetchApiItem = (id, type) => async dispatch => {
-  const config = { params: {toQuery :id } };
-  const res = await axios.get(`/api/${type}`, config);
-  console.log('res.data:', res.data);
+// export const fetchApiItem = (id, type) => async dispatch => {
+//   const config = { params: {toQuery :id } };
+//   const res = await axios.get(`/api/${type}`, config);
+//
+//   console.log('res.data:', res.data);
+//   const resData = res.data.foods[0];
+//   console.log('resData:', resData);
+//
+//
+//   const foodObj = {};
+//   foodObj.name = resData.food_name;
+//   foodObj.servingSize = `${resData.serving_qty}${resData.serving_unit}`;
+//   foodObj.servings = 1;
+//   foodObj.calories = parseInt(resData.nf_calories);
+//   foodObj.fat = parseInt(resData.nf_total_fat);
+//   foodObj.carbs = parseInt(resData.nf_total_carbohydrate);
+//   foodObj.fiber = parseInt(resData.nf_dietary_fiber);
+//   foodObj.sugar = parseInt(resData.nf_sugars);
+//   foodObj.protein = parseInt(resData.nf_protein);
+//
+//   console.log('foodObj:', foodObj);
+//   dispatch({type: FETCH_API_ITEM, payload: foodObj});
+// }
 
-  dispatch({type: FETCH_API_ITEM, payload: res.data.foods[0]});
+export const fetchApiItem = (id, type) => dispatch => {
+
+  const foodObj = {};
+  foodObj.name = "Wheaties";
+  foodObj.servingSize = `1cup`;
+  foodObj.servings = 1;
+  foodObj.calories = 100;
+  foodObj.fat = 5;
+  foodObj.carbs = 10;
+  foodObj.fiber = 3;
+  foodObj.sugar = 2;
+  foodObj.protein = 1;
+
+  dispatch({type: FETCH_API_ITEM, payload: foodObj});
+}
+
+export const submitNewMeal = (meal) => async dispatch => {
+  const res = await axios.post(`meals/add`, meal);
+
+  console.log('submitNewMeal res.data', res.data);
+
+  dispatch({type: FETCH_USER, payload: res.data});
 }
