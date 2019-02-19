@@ -80,6 +80,7 @@ class AddMeal extends Component {
   }
 
   logState = () => {
+    this.props.fetchMealsToday();
     console.log(this.state);
     console.log(this.props);
   }
@@ -91,12 +92,12 @@ class AddMeal extends Component {
   toggleFocus = () => {
     this.setState({ focus: !this.state.focus});
 
-      // setTimeout(function(){
-      //   if(!this.state.focus){
-      //     console.log('clearing search!');
-      //     this.clearSearch();
-      //   }
-      // }.bind(this), 100);
+      setTimeout(function(){
+        if(!this.state.focus){
+          console.log('clearing search!');
+          this.clearSearch();
+        }
+      }.bind(this), 100);
   }
 
   renderPopup = () => {

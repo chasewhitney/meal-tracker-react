@@ -26,12 +26,24 @@ const Main = styled.div`
 `;
 
 class Dashboard extends Component {
+  async componentDidMount(){
+    console.log('Dashboard mounted');
+    await this.props.fetchMealsToday();
+    this.setState({meals: this.props.mealsToday});
+  }
+
+  logState = () => {
+    console.log('dashboard state:', this.state);
+    console.log('dashboard props:', this.props);
+  }
+
 
   render() {
     return (
       <Container>
         <Sidebar>
           <h2>Quick Picks</h2>
+          <button onClick={this.logState}>Log Dashboard State and Props</button>
         </Sidebar>
         <Main>
           <AddMeal />
@@ -44,8 +56,8 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {...state};
+function mapStateToProps({state}) {
+  return {state};
 }
 
 export default connect(mapStateToProps, actions)(Dashboard);

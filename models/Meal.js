@@ -3,7 +3,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const favSchema = new Schema({
+const mealSchema = new Schema({
+  user: String,
   name: String,
   servingSize: String,
   servings: Number,
@@ -13,13 +14,9 @@ const favSchema = new Schema({
   fat: Number,
   fiber: Number,
   sugar: Number,
+  date: Date
 })
 
-const userSchema = new Schema({
-  googleId: String,
-  favorites: [favSchema],
-});
+const Meal = mongoose.model('meals', mealSchema);
 
-const User = mongoose.model('users', userSchema);
-
-module.exports = User;
+module.exports = Meal;

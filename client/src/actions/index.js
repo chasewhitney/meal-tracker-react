@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM } from './types';
+import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM, FETCH_MEALS_TODAY } from './types';
 
 export const fetchUser = () => async dispatch => {
   // console.log('action: fetching user');
@@ -13,7 +13,7 @@ export const fetchUser = () => async dispatch => {
 export const fetchApiAll = (term) => async dispatch => {
 
   const config = {params: {searchQuery: term}};
-  const res = await axios.get('api/instant', config);
+  const res = await axios.get('/api/instant', config);
   console.log('res.data:', res.data);
 
   const { data } = res;
@@ -71,9 +71,17 @@ export const fetchApiItem = (id, type) => dispatch => {
 }
 
 export const submitNewMeal = (meal) => async dispatch => {
-  const res = await axios.post(`meals/add`, meal);
+  const res = await axios.post('/meals/add', meal);
 
   console.log('submitNewMeal res.data', res.data);
 
-  dispatch({type: FETCH_USER, payload: res.data});
+  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+}
+
+export const fetchMealsToday = () => async dispatch => {
+  const res = await axios.get('meals/today');
+
+  console.log('fetchMealsToday res.data', res.data);
+
+  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
 }

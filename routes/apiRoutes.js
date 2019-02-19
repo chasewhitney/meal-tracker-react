@@ -9,6 +9,7 @@ module.exports = app => {
 
   // GET INSTANT DROPDOWN LIST
   app.get('/api/instant', (req, res) => {
+    console.log('instant:', req.params);
     const { searchQuery } = req.query;
     console.log('searchQuery:', searchQuery);
 
@@ -80,11 +81,6 @@ app.get('/api/branded', (req, res) => {
       res.send(JSON.parse(body));
     }
   });
-});
-
-app.get('/*', (req, res) => {
-  console.log('404 : ', req.params);
-  res.sendStatus(404);
 });
 
 }
