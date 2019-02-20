@@ -26,6 +26,7 @@ module.exports = app => {
 
     const mealToAdd = {...req.body, user, date};
     const meal = new Meal(mealToAdd)
+    console.log('post.meals/add saving:', meal);
 
     meal.save().then(()=>{
       Meal.find({$and:[{date}, {user}] }).
@@ -34,6 +35,18 @@ module.exports = app => {
         })
     })
   });
+
+  app.post('/meals/addFavorite', (req,res) => {
+    const { _id } = req.user;
+    const fav = req.body;
+    console.log('adding fav:', fav)
+    User.findById({_id}).then(user => {
+      user.favorites.push(fav);
+      user.save().then(user => {
+        res.send(user);
+      })
+    })
+  })
 
 
 

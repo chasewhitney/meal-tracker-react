@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM, FETCH_MEALS_TODAY } from './types';
+import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM, FETCH_MEALS_TODAY, FETCH_FAVORITES } from './types';
 
 export const fetchUser = () => async dispatch => {
   // console.log('action: fetching user');
@@ -84,4 +84,14 @@ export const fetchMealsToday = () => async dispatch => {
   console.log('fetchMealsToday res.data', res.data);
 
   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+}
+
+export const addToFavorites = (item) => async dispatch => {
+  console.log('addToFavorites action sending item:', item);
+
+  const res = await axios.post('meals/addFavorite', item);
+
+  console.log('addToFavorites res.data:', res.data);
+
+  dispatch({type: FETCH_USER, payload: res.data});
 }

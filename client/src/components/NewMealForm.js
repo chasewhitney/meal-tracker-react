@@ -68,15 +68,17 @@ class NewMealForm extends Component {
           })}
         </div>
       )
-
-
-
   };
+
+  handleSubmitClick = (e) => {
+    this.props.onSubmit(e, this.state.itemToAdd);
+    this.props.closePopup();
+  }
 
   render() {
     return (
       <FormContainer>
-        <form onSubmit={(e) => this.props.onSubmit(e, this.state.itemToAdd)}>
+        <form onSubmit={(e) => this.handleSubmitClick(e)}>
           {this.state.apiDone ? this.renderFields() : null}
            <button type="submit">submit</button>
         </form>

@@ -36,13 +36,6 @@ const ApiBox = styled.div`
 
 `;
 
-const DropdownContainer = styled.div`
-  position: absolute;
-  top: 3rem;
-  left: 0;
-  width: 100%;
-`;
-
 const Popup = styled.div`
   position: fixed;
   background-color: rgba(0,0,0,.80);
@@ -104,15 +97,9 @@ class AddMeal extends Component {
     if(this.state.popup)
     return (
       <Popup onClick={this.handleClickPopup}>
-        <NewMealForm addItem={this.state.toFetch} onSubmit={this.submitNewMeal}/>
+        <NewMealForm closePopup={this.closePopup} addItem={this.state.toFetch} onSubmit={this.props.onMealSubmit}/>
       </Popup>
     );
-  }
-
-  submitNewMeal = (e, itemToAdd) => {
-    e.preventDefault();
-    console.log('in submitNewMeal:', itemToAdd);
-    this.props.submitNewMeal(itemToAdd);
   }
 
   handleDropdownClick = (id, type) => {
@@ -125,8 +112,12 @@ class AddMeal extends Component {
 
   handleClickPopup = (e) => {
     if(e.currentTarget === e.target) {
-      this.setState({popup: false});
+      this.closePopup();
     }
+  }
+
+  closePopup = () => {
+    this.setState({popup: false});
   }
 
   render() {
