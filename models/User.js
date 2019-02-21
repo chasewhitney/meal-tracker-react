@@ -3,23 +3,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const favSchema = new Schema({
-  name: String,
-  servingSize: String,
-  servings: Number,
-  calories: Number,
-  protein: Number,
-  carbs: Number,
-  fat: Number,
-  fiber: Number,
-  sugar: Number,
-})
-
-const userSchema = new Schema({
+const UserSchema = new Schema({
   googleId: String,
-  favorites: [favSchema],
+  favorites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'favorites'
+  }]
 });
 
-const User = mongoose.model('users', userSchema);
+UserSchema.pre('remove', function(next) {
+  const Favorite = mongoose.model('favorites');
+  Favorite.remove({ _id: { $in: this.favorites } })
+    .then(() => next());
+});
+
+const User = mongoose.model('users', UserSchema);
 
 module.exports = User;

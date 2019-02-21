@@ -47,14 +47,12 @@ const MealItem = styled.div`
 class Dashboard extends Component {
   state = {meals: [], totals: {}};
   async componentDidMount(){
-    console.log('Dashboard mounted');
-    console.log('Dashboard:prefetch');
     await this.props.fetchMealsToday();
-    console.log('Dashboard:postfetch');
-    console.log('presetStateMeals');
     await this.setState({meals: this.props.todayMeals});
-    console.log('posttStateMeals');
-    console.log('this.state.meals:', this.state.meals);
+    console.log('props:', this.props);
+    console.log('state:', this.state);
+    console.log('user:', this.props.auth);
+    console.log('meals:', this.state.meals);
     this.calcDailyTotals();
   }
 
@@ -77,10 +75,6 @@ class Dashboard extends Component {
     this.setState({totals});
   }
 
-  addToFavorites = (item) => {
-    console.log('in addToFavorites with:', item);
-    this.props.addToFavorites(item);
-  }
 
   renderMeals = () => {
     if(!this.state){
@@ -91,7 +85,8 @@ class Dashboard extends Component {
         {this.state.meals.map(item => {
           return (
             <MealItem key={item._id}>
-              <div>
+              <div style={{display: "flex"}}>
+                <img style={{height: "40px"}}src={item.img} />
                 <div>{item.name}</div>
                 <div>{item.servings}servings</div>
               </div>
@@ -103,9 +98,9 @@ class Dashboard extends Component {
               <div>sugar: {item.sugar}g</div>
               <div>net carbs: {item.carbs - item.fiber}g</div>
               <div>
-                <button onClick={() => {this.addToFavorites(item)}}>Favorite</button>
+                <button onClick={() => {this.props.addToFavorites(item)}}>Favorite</button>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => {this.handleMealDelete(item._id)}}>Delete</button>
               </div>
             </MealItem>
           )
@@ -141,7 +136,13 @@ class Dashboard extends Component {
     return (
       <div>
         {this.props.auth.favorites.map(item => {
-          return <div key={item._id}>{item.name} - {item.servingSize}</div>
+          return <div key={item._id}>
+                    <div onClick={(e) => this.handleMealSubmit(e, item)}>
+                      <img style={{width: "40px"}} src={item.img} />
+                      {item.name} - {item.servingSize}
+                    </div>
+                    <button onClick={() => this.props.deleteFavorite(item._id)}>Delete</button>
+                  </div>
         })}
       </div>
     )
@@ -154,8 +155,15 @@ class Dashboard extends Component {
     await this.setState({meals: this.props.todayMeals});
     console.log('this.state.meals hMS:', this.state.meals);
     this.calcDailyTotals();
-
   }
+
+  handleMealDelete = async (id) => {
+    await this.props.deleteMeal(id);
+    await this.setState({meals: this.props.todayMeals});
+    console.log('this.state.meals hMD:', this.state.meals);
+    this.calcDailyTotals();
+  }
+
 
 //////// DEV /////////////////////////////
     logState = () => {

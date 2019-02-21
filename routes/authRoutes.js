@@ -1,4 +1,5 @@
 const passport = require('passport');
+const User = require('../models/User');
 
 module.exports = app => {
   app.get(
@@ -17,8 +18,12 @@ module.exports = app => {
   );
 
   app.get('/api/current_user', (req, res) => {
+    const { _id } = req.user
     console.log('request for user, sending:', req.user);
-    res.send(req.user);
+    User.findById({_id}).populate('favorites').then(user => {
+      res.send(user);
+    });
+
   });
 
   app.get('/api/logout', (req, res) => {

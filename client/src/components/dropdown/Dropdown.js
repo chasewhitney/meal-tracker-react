@@ -83,8 +83,9 @@ const FocusBar = styled.div.attrs(({width, tab}) => ({
 
 }))`
   position: relative;
-  height: 4px;
+  height: 2px;
   width: 100%;
+  background-color:white;
 
   &.left {
   -webkit-transition: left .125s cubic-bezier(.35, 0, .25, 1), right .25s cubic-bezier(.35, 0, .25, 1);
