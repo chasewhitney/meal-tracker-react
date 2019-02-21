@@ -62,7 +62,7 @@ class Dashboard extends Component {
     const totals = {};
     meals.forEach(val => {
 	    for(let prop in val){
-        if(typeof val[prop] === "number" && prop != "servings" && prop != "__v"){
+        if(typeof val[prop] === "number" && prop !== "servings" && prop !== "__v"){
     	    if(totals[prop]) {
       	    totals[prop] += val[prop];
           } else {
@@ -86,7 +86,7 @@ class Dashboard extends Component {
           return (
             <MealItem key={item._id}>
               <div style={{display: "flex"}}>
-                <img style={{height: "40px"}}src={item.img} />
+                <img style={{height: "40px"}} src={item.img} alt="Food item" />
                 <div>{item.name}</div>
                 <div>{item.servings}servings</div>
               </div>
@@ -118,7 +118,7 @@ class Dashboard extends Component {
       <TodayTotals>
         <div>TOTALS:</div>
         {Object.keys(totals).map(key => {
-          if(key == "calories") {return <div key={key}>{key}:{totals[key]}</div>}
+          if(key === "calories") {return <div key={key}>{key}:{totals[key]}</div>}
           return <div key={key}>{key}:{totals[key]}g</div>
         })}
         <div>Net Carbs: {totals.carbs - totals.fiber}g</div>
@@ -138,7 +138,7 @@ class Dashboard extends Component {
         {this.props.auth.favorites.map(item => {
           return <div key={item._id}>
                     <div onClick={(e) => this.handleMealSubmit(e, item)}>
-                      <img style={{width: "40px"}} src={item.img} />
+                      <img style={{width: "40px"}} src={item.img} alt="Food item"/>
                       {item.name} - {item.servingSize}
                     </div>
                     <button onClick={() => this.props.deleteFavorite(item._id)}>Delete</button>

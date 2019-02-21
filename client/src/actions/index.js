@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM, FETCH_MEALS_TODAY, FETCH_FAVORITES } from './types';
+import { FETCH_USER, FETCH_API_ALL, FETCH_API_ITEM, FETCH_MEALS_TODAY} from './types';
 
 export const fetchUser = () => async dispatch => {
   // console.log('action: fetching user');

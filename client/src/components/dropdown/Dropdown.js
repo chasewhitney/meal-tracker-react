@@ -129,13 +129,13 @@ class Dropdown extends Component {
   componentDidUpdate() {
     // console.log('updated Dropdown, tab:', this.state.tab);
     // console.log('this.divHeights', this.divHeights);
-    if(this.state.size != this.divHeights[this.state.tab].clientHeight){
+    if(this.state.size !== this.divHeights[this.state.tab].clientHeight){
       this.setState({size: this.divHeights[this.state.tab].clientHeight});
     }
   }
 
   handleChange = (tab) => {
-    if(this.state.ready && this.state.tab != tab) {
+    if(this.state.ready && this.state.tab !== tab) {
       this.ready = !this.ready;
       setTimeout(() => this.setState({ready: true}), 380);
       this.setState(prevState => ({ tab: tab, prevTab: prevState.tab, ready: false}));

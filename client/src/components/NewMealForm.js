@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import NewMealField from './NewMealField';
 import newMealFormFields from './newMealFormFields';
 import * as actions from '../actions';
 
@@ -55,14 +54,14 @@ class NewMealForm extends Component {
       // console.log('apiDone:', this.state.apiDone);
       return (
         <div>
-          {newMealFormFields.map(item => {
+          {newMealFormFields.map(({name, label, type}) => {
             // console.log('item:', item);
             // console.log('this.state.itemToAdd', this.state.itemToAdd);
             // console.log('this.state.apiDone', this.state.apiDone)
             return (
-              <div key={item.name}>
-                <label>{item.label}</label>
-                <input name={item.name} onChange={this.handleChange} value={this.state.itemToAdd[item.name]}/>
+              <div key={name}>
+                <label>{label}</label>
+                <input name={name} type={type} onChange={this.handleChange} value={this.state.itemToAdd[name]}/>
               </div>
             )
           })}

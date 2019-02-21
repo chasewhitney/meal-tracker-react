@@ -1,7 +1,6 @@
 //// Landing page after login ////
 
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import styled from 'styled-components';
@@ -144,4 +143,4 @@ function mapStateToProps(state) {
   return {...state};
 }
 
-export default reduxForm({form: 'mealForm'})(connect(mapStateToProps, actions)(AddMeal));
+export default connect(mapStateToProps, actions)(AddMeal);
