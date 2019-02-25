@@ -9,10 +9,45 @@ import * as actions from '../actions';
 import Dropdown from './dropdown/Dropdown';
 import NewMealForm from './NewMealForm';
 
+const Inputs = styled.div`
+  background-color: red;
+  padding: 1.5rem;
 
+  display: flex;
+  justify-content: space-around;
+`;
 
+const ApiSearch = styled.input`
+  width: 100%;
+  height: 3rem;
+`;
 
+const AddMealButton = styled.button`
+`;
 
+const ApiBox = styled.div`
+  position: relative;
+  width: 40rem;
+  outline: none;
+
+  display: flex;
+  flex-direction: column;
+
+`;
+
+const Popup = styled.div`
+  position: fixed;
+  background-color: rgba(0,0,0,.80);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 class AddMeal extends Component {
   state = { term : '', focus: false, popup: false, toFetch: {id: '', type: ''} };
@@ -87,8 +122,18 @@ class AddMeal extends Component {
   render() {
     return (
           <Inputs>
+            {this.renderPopup()}
+            <AddMealButton onClick={this.handleCreateMealClick}>Add a meal</AddMealButton>
+            <button onClick={this.logState}>Log State</button>
+            <ApiBox onFocus={this.toggleFocus} onBlur={this.toggleFocus} tabIndex="0">
+              <ApiSearch placeholder="Search for info"
+                value={this.state.term}
+                onChange={this.handleInputChange}
+                autoComplete="off"
+                />
+              {this.renderDropdown()}
 
-
+            </ApiBox>
           </Inputs>
     )
   }

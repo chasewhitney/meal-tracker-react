@@ -74,21 +74,21 @@ export const fetchApiItem = (id, type) => dispatch => {
 }
 //////////////////// END DEVELOPMENT /////////////////////////////////////////
 
-export const submitNewMeal = (meal) => async dispatch => {
-  const res = await axios.post('/meals/addMeal', meal);
-
-  console.log('submitNewMeal res.data', res.data);
-
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
-
-export const fetchMealsToday = () => async dispatch => {
-  const res = await axios.get('/meals/getToday');
-
-  console.log('fetchMealsToday res.data', res.data);
-
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
+// export const submitNewMeal = (meal) => async dispatch => {
+//   const res = await axios.post('/meals/addMeal', meal);
+//
+//   console.log('submitNewMeal res.data', res.data);
+//
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
+//
+// export const fetchMealsToday = () => async dispatch => {
+//   const res = await axios.get('/meals/getToday');
+//
+//   console.log('fetchMealsToday res.data', res.data);
+//
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
 
 export const addToFavorites = (item) => async dispatch => {
   console.log('addToFavorites action sending item:', item);
