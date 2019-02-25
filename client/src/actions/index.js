@@ -90,30 +90,30 @@ export const fetchApiItem = (id, type) => dispatch => {
 //   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
 // }
 
-export const addToFavorites = (item) => async dispatch => {
-  console.log('addToFavorites action sending item:', item);
+// export const addToFavorites = (item) => async dispatch => {
+//   console.log('addToFavorites action sending item:', item);
+//
+//   const res = await axios.post('/meals/addFavorite', item);
+//
+//   console.log('addToFavorites res.data:', res.data);
+//
+//   dispatch({type: FETCH_USER, payload: res.data});
+// }
 
-  const res = await axios.post('/meals/addFavorite', item);
+// export const deleteMeal = (id) => async dispatch => {
+//   console.log('action deleting meal:', id);
+//
+//   const res = await axios.delete(`/meals/deleteMeal/${id}`);
+//
+//   console.log('deleting meal res.data:', res.data);
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
 
-  console.log('addToFavorites res.data:', res.data);
-
-  dispatch({type: FETCH_USER, payload: res.data});
-}
-
-export const deleteMeal = (id) => async dispatch => {
-  console.log('action deleting meal:', id);
-
-  const res = await axios.delete(`/meals/deleteMeal/${id}`);
-
-  console.log('deleting meal res.data:', res.data);
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
-
-export const deleteFavorite = (id) => async dispatch => {
-  console.log('action deleting favorite:', id);
-
-  const res = await axios.delete(`/meals/deleteFavorite/${id}`);
-
-  console.log('deleting favorite res.data:', res.data);
-  dispatch({type: FETCH_USER, payload: res.data});
-}
+// export const deleteFavorite = (id) => async dispatch => {
+//   console.log('action deleting favorite:', id);
+//
+//   const res = await axios.delete(`/meals/deleteFavorite/${id}`);
+//
+//   console.log('deleting favorite res.data:', res.data);
+//   dispatch({type: FETCH_USER, payload: res.data});
+// }

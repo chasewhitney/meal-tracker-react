@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import * as actions from '../actions';
+import axios from 'axios';
 
 const MealItem = styled.div`
   display: grid;
@@ -13,6 +14,12 @@ const TodayMeals = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const deleteMeal = async (id, callback) => {
+  console.log('deleting meal:', id);
+  const res = await axios.delete(`/meals/deleteMeal/${id}`);
+  callback(res.data);
+}
 
 export default connect(null, actions)((props) => {
   if(!props.meals){
@@ -38,7 +45,7 @@ export default connect(null, actions)((props) => {
             <div>
               <button onClick={() => props.addToFavorites(item)}>Favorite</button>
               <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => deleteMeal(item._id, props.update)}>Delete</button>
             </div>
           </MealItem>
         )

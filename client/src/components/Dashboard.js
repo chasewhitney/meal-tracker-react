@@ -32,22 +32,21 @@ class Dashboard extends Component {
     this.fetchTodayMeals();
   }
 
-  componentDidUpdate(){
-    console.log('props:', this.props);
-    console.log('state:', this.state);
-    console.log('user:', this.props.auth);
-    console.log('meals:', this.state.meals);
-  }
-
-  handleMealSubmit = async (e, meal) => {
+  handleMealSubmit = async (meal) => {
     console.log('handleMealSubmit meal:', meal);
     const res = await axios.post('/meals/addMeal', meal);
     this.setState({meals: res.data});
+    console.log('meals after submit:', this.state.meals);
   }
 
   fetchTodayMeals = async () => {
     const res = await axios.get('/meals/getToday');
     this.setState({meals: res.data});
+    console.log('fetched meals:', this.state.meals);
+  }
+
+  update = (data) => {
+    this.setState({meals: data});
   }
 
 //////// DEV /////////////////////////////
@@ -64,7 +63,7 @@ class Dashboard extends Component {
         <Main>
           <AddMealBar handleMealSubmit={this.handleMealSubmit}/>
           <DailyTotals meals={this.state.meals}/>
-          <TodayMeals meals={this.state.meals}/>
+          <TodayMeals meals={this.state.meals} update={this.update}/>
         </Main>
       </DashboardContainer>
     )

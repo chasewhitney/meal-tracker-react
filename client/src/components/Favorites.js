@@ -29,7 +29,7 @@ export default connect(mapStateToProps, actions)(props => {
       {favorites.map(item => {
         return (
           <div key={item._id}>
-            <div onClick={(e) => props.handleMealSubmit(e, item)}>
+            <div onClick={(e) => props.handleMealSubmit(item)}>
               <img style={{width: "40px"}} src={item.img} alt="Food item"/>
               {item.name} - {item.servingSize}
             </div>
