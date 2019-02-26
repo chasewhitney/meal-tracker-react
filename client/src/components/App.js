@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import * as actions from '../actions';
 import styled from 'styled-components';
+import { ModalProvider } from 'styled-react-modal';
 
 import Header from './Header';
 import Landing from './Landing';
@@ -21,11 +22,13 @@ class App extends Component {
   render(){
     return(
       <BrowserRouter>
-        <AppContainer>
-          <Header />
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/dashboard' component={Dashboard} />
-        </AppContainer>
+        <ModalProvider>
+          <AppContainer>
+            <Header />
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/dashboard' component={Dashboard} />
+          </AppContainer>
+        </ModalProvider>
       </ BrowserRouter>
     )
   }

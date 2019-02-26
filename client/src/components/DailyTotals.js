@@ -12,9 +12,9 @@ const calcDailyTotals = (meals) => {
     for(let prop in val){
       if(typeof val[prop] === "number" && prop !== "servings" && prop !== "__v"){
         if(totals[prop]) {
-          totals[prop] += val[prop];
+          totals[prop] += val[prop] * val["servings"];
         } else {
-          totals[prop] = val[prop];
+          totals[prop] = val[prop] * val["servings"];
         }
       }
     }
@@ -30,11 +30,13 @@ export default props => {
   return (
     <TodayTotals>
       <div>TOTALS:</div>
-      {Object.keys(totals).map(key => {
-        if(key === "calories") {return <div key={key}>{key}:{totals[key]}</div>}
-        return <div key={key}>{key}:{totals[key]}g</div>
-      })}
-      <div>Net Carbs: {totals.carbs - totals.fiber}g</div>
+      <div>{totals.calories} calories</div>
+      <div>{totals.fat}g fat</div>
+      <div>{totals.protein}g protein</div>
+      <div>{totals.carbs}g carbs</div>
+      <div>{totals.fiber}g fiber</div>
+      <div>{totals.sugar}g sugar</div>
+      <div>{totals.carbs - totals.fiber}g net carbs</div>
     </TodayTotals>
   )
 };

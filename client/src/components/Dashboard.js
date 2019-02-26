@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Modal from 'styled-react-modal';
 import axios from 'axios';
 
 import Favorites from './Favorites';
@@ -11,6 +12,15 @@ import Dropdown from './dropdown/Dropdown';
 import NewMealForm from './NewMealForm';
 import AddMealBar from './AddMealBar';
 import TodayMeals from './TodayMeals';
+
+const Popup = Modal.styled`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+`
 
 const DashboardContainer = styled.div`
   font-size: 1.5rem; //temp
@@ -26,10 +36,15 @@ const Main = styled.div`
 `;
 
 class Dashboard extends Component {
-  state = { meals: [] };
+
+  state = { meals: [], isOpen: false };
 
   async componentDidMount(){
     this.fetchTodayMeals();
+  }
+
+  toggleModal = (e) => {
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }))
   }
 
   handleMealSubmit = async (meal) => {
@@ -61,6 +76,14 @@ class Dashboard extends Component {
       <DashboardContainer>
         <Favorites handleMealSubmit={this.handleMealSubmit}/>
         <Main>
+          <button onClick={this.toggleModal}>Click me</button>
+          <Popup
+            isOpen={this.state.isOpen}
+            onBackgroundClick={this.toggleModal}
+            onEscapeKeydown={this.toggleModal}>
+            <span>I am a modal!</span>
+            <button onClick={this.toggleModal}>Close me</button>
+          </Popup>
           <AddMealBar handleMealSubmit={this.handleMealSubmit}/>
           <DailyTotals meals={this.state.meals}/>
           <TodayMeals meals={this.state.meals} update={this.update}/>

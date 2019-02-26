@@ -35,13 +35,13 @@ export default connect(null, actions)((props) => {
               <div>{item.name}</div>
               <div>{item.servings}servings</div>
             </div>
-            <div>{item.calories} calories</div>
-            <div>fat: {item.fat}g</div>
-            <div>protein: {item.protein}g</div>
-            <div>carbs: {item.carbs}g</div>
-            <div>fiber: {item.fiber}g</div>
-            <div>sugar: {item.sugar}g</div>
-            <div>net carbs: {item.carbs - item.fiber}g</div>
+            <div>{item.calories * item.servings} calories</div>
+            <div>{item.fat * item.servings}g fat</div>
+            <div>{item.protein * item.servings}g protein</div>
+            <div>{item.carbs * item.servings}g carbs </div>
+            <div>{item.fiber * item.servings}g fiber</div>
+            <div>{item.sugar * item.servings}g sugar</div>
+            <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
             <div>
               <button onClick={() => props.addToFavorites(item)}>Favorite</button>
               <button>Edit</button>

@@ -26,7 +26,14 @@ module.exports = app => {
         console.log('error:', err);
         res.sendStatus(500);
       } else {
-        res.send(JSON.parse(body));
+        const data = JSON.parse(body);
+        for (let arr in data) {
+            if (data.hasOwnProperty(arr)) {
+              data[arr].splice(10,10);
+            }
+        }
+        data.all = { branded: data.branded.slice(0,5), common: data.common.slice(0,5)};
+        res.send(data);
       }
     });
   });
