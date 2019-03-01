@@ -12,10 +12,10 @@ import Dropdown from './dropdown/Dropdown';
 import NewMealForm from './NewMealForm';
 import AddMealBar from './AddMealBar';
 import TodayMeals from './TodayMeals';
+import AddMealForm from './AddMealForm';
 
 const Popup = Modal.styled`
   width: 20rem;
-  height: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,20 +37,20 @@ const Main = styled.div`
 
 class Dashboard extends Component {
 
-  state = { meals: [], isOpen: false };
+  state = { meals: [], popupIsOpen: false, mealToAdd: {} };
 
   async componentDidMount(){
     this.fetchTodayMeals();
   }
 
   toggleModal = (e) => {
-    this.setState((prevState) => ({ isOpen: !prevState.isOpen }))
+    this.setState((prevState) => ({ popupIsOpen: !prevState.popupIsOpen }))
   }
 
-  handleMealSubmit = async (meal) => {
-    console.log('handleMealSubmit meal:', meal);
-    const res = await axios.post('/meals/addMeal', meal);
-    this.setState({meals: res.data});
+  handleMealSubmit = async () => {
+    console.log('handleMealSubmit meal:', this.props.form.addMeal.values);
+    const res = await axios.post('/meals/addMeal', this.props.form.addMeal.values);
+    this.setState({meals: res.data, popupIsOpen: false});
     console.log('meals after submit:', this.state.meals);
   }
 
@@ -64,10 +64,55 @@ class Dashboard extends Component {
     this.setState({meals: data});
   }
 
+  handleDropdownClick = async (id, type) => {
+    console.log('dropdown clicked:', id, type);
+
+    ///////////  DEV ////////////////
+    // const foodObj = {};
+    // foodObj.name = "Wheaties";
+    // foodObj.servingSize = `1cup`;
+    // foodObj.servings = 1;
+    // foodObj.calories = 100;
+    // foodObj.fat = 5;
+    // foodObj.carbs = 10;
+    // foodObj.fiber = 3;
+    // foodObj.sugar = 2;
+    // foodObj.protein = 1;
+    // foodObj.img = "https://d1r9wva3zcpswd.cloudfront.net/576d9e8e7d920b7a1664cb59.jpeg";
+    // console.log('mealToAdd:', foodObj);
+    // this.setState({mealToAdd: foodObj});
+    // this.toggleModal();
+
+    ////////////////////////////////
+
+
+
+    ////////// PRODUCTION ///////////////////////
+    if(!id){
+      console.log('clicked AddMealButton');
+      this.setState({mealToAdd: {}});
+    } else {
+      console.log('clicked Dropdown');
+      const config = { params: {toQuery :id } };
+      const res = await axios.get(`/api/${type}`, config);
+
+      console.log('mealToAdd:', res.data);
+      this.setState({mealToAdd: res.data});
+    }
+    this.toggleModal();
+
+  }
+
 //////// DEV /////////////////////////////
   logState = () => {
     console.log('meals:', this.state.meals);
     console.log('auth:', this.props.auth);
+  }
+
+  onFormSubmit = () => {
+    console.log('form was submitted');
+    console.log('SUBMIT:', this.props.form.addMealForm.values);
+    this.toggleModal();
   }
 ///////////////////////////////////////////
   render() {
@@ -78,13 +123,12 @@ class Dashboard extends Component {
         <Main>
           <button onClick={this.toggleModal}>Click me</button>
           <Popup
-            isOpen={this.state.isOpen}
+            isOpen={this.state.popupIsOpen}
             onBackgroundClick={this.toggleModal}
             onEscapeKeydown={this.toggleModal}>
-            <span>I am a modal!</span>
-            <button onClick={this.toggleModal}>Close me</button>
+            <AddMealForm mealToAdd={this.state.mealToAdd} onFormSubmit={this.handleMealSubmit} />
           </Popup>
-          <AddMealBar handleMealSubmit={this.handleMealSubmit}/>
+          <AddMealBar handleDropdownClick={this.handleDropdownClick} handleMealSubmit={this.handleMealSubmit}/>
           <DailyTotals meals={this.state.meals}/>
           <TodayMeals meals={this.state.meals} update={this.update}/>
         </Main>

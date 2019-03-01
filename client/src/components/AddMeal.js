@@ -70,7 +70,7 @@ class AddMeal extends Component {
     this.setState({toFetch: {id, type}, popup: true});
   }
 
-  handleCreateMealClick= () => {
+  handleCreateMealClick = () => {
     this.setState({toFetch: {id: '', type:''}, popup: true});
   }
 

@@ -25,7 +25,7 @@ module.exports = app => {
     const today = new Date();
     const date = new Date(today.getFullYear(), (today.getMonth()), today.getDate());
     const mealToAdd = {...req.body, user, date};
-    mealToAdd.img = mealToAdd.img ? mealToAdd.img : "https://d1r9wva3zcpswd.cloudfront.net/576d9e8e7d920b7a1664cb59.jpeg";
+    mealToAdd.img = mealToAdd.img ? mealToAdd.img : "https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png";
     if(mealToAdd._id) {delete mealToAdd._id}
     const meal = new Meal(mealToAdd);
     console.log('post.meals/add saving:', meal);

@@ -136,10 +136,10 @@ class Dropdown extends Component {
   }
 
   render(){
-    console.log('render dd:', this.props.content);
+    // console.log('render dd:', this.props.content);
     if(!this.props.content.all) { return null;}
     return (
-          <Tabs focused={this.state}>
+          <Tabs focused={this.state} >
             <LabelContainer ref={divElement => this.divWidths[0] = divElement}>
               <Label onClick={(e) => this.handleChange(1)} className="label-1">All</Label>
               <Label onClick={(e) => this.handleChange(2)} className="label-2">Branded</Label>
@@ -149,14 +149,14 @@ class Dropdown extends Component {
               className={this.state.tab > this.state.prevTab ? "right" : "left"}/>
             <ContentContainer size={this.state.size} ctab={this.state.tab} ptab={this.state.prevTab}>
               <TabContent className="content-1" ref={divElement => this.divHeights[1] = divElement}>
-                <CommonContent foodList={this.props.content.all.common} onClick={this.props.handleClick} />
-                <BrandedContent foodList={this.props.content.all.branded} onClick={this.props.handleClick} />
+                <CommonContent foodList={this.props.content.all.common} onClick={this.props.handleDropdownClick} />
+                <BrandedContent foodList={this.props.content.all.branded} onClick={this.props.handleDropdownClick} />
               </TabContent>
               <TabContent className="content-2" ref={divElement => this.divHeights[2] = divElement}>
-                <BrandedContent foodList={this.props.content.branded} onClick={this.props.handleClick} />
+                <BrandedContent foodList={this.props.content.branded} onClick={this.props.handleDropdownClick} />
               </TabContent>
               <TabContent className="content-3" ref={divElement => this.divHeights[3] = divElement}>
-                <CommonContent foodList={this.props.content.common} onClick={this.props.handleClick}/>
+                <CommonContent foodList={this.props.content.common} onClick={this.props.handleDropdownClick}/>
               </TabContent>
             </ContentContainer>
           </Tabs>
