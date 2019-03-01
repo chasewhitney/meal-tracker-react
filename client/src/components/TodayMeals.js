@@ -44,7 +44,7 @@ export default connect(null, actions)((props) => {
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
             <div>
               <button onClick={() => props.addToFavorites(item)}>Favorite</button>
-              <button>Edit</button>
+              <button onClick={() => props.onEdit(item)}>Edit</button>
               <button onClick={() => deleteMeal(item._id, props.update)}>Delete</button>
             </div>
           </MealItem>

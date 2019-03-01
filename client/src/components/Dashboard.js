@@ -37,7 +37,7 @@ const Main = styled.div`
 
 class Dashboard extends Component {
 
-  state = { meals: [], popupIsOpen: false, mealToAdd: {} };
+  state = { meals: [], popupIsOpen: false, mealToAdd: {}, editing: false };
 
   async componentDidMount(){
     this.fetchTodayMeals();
@@ -48,10 +48,19 @@ class Dashboard extends Component {
   }
 
   handleMealSubmit = async () => {
-    console.log('handleMealSubmit meal:', this.props.form.addMeal.values);
-    const res = await axios.post('/meals/addMeal', this.props.form.addMeal.values);
+    const {values} = this.props.form.addMeal;
+    let res = {};
+
+    if(values.editing) {
+      console.log('handleMealSubmit updating:', values);
+      res = await axios.put('/meals/updateMeal', values);
+    } else {
+      console.log('handleMealSubmit submitting new:', values);
+      res = await axios.post('/meals/addMeal', values);
+    }
     this.setState({meals: res.data, popupIsOpen: false});
     console.log('meals after submit:', this.state.meals);
+
   }
 
   fetchTodayMeals = async () => {
@@ -103,6 +112,13 @@ class Dashboard extends Component {
 
   }
 
+  handleEditClick = (meal) => {
+    console.log('editing meal:', meal);
+    meal.editing = true;
+    this.setState({mealToAdd: meal});
+    this.toggleModal();
+  }
+
 //////// DEV /////////////////////////////
   logState = () => {
     console.log('meals:', this.state.meals);
@@ -121,16 +137,16 @@ class Dashboard extends Component {
       <DashboardContainer>
         <Favorites handleMealSubmit={this.handleMealSubmit}/>
         <Main>
-          <button onClick={this.toggleModal}>Click me</button>
           <Popup
             isOpen={this.state.popupIsOpen}
             onBackgroundClick={this.toggleModal}
-            onEscapeKeydown={this.toggleModal}>
+            onEscapeKeydown={this.toggleModal}
+            >
             <AddMealForm mealToAdd={this.state.mealToAdd} onFormSubmit={this.handleMealSubmit} />
           </Popup>
           <AddMealBar handleDropdownClick={this.handleDropdownClick} handleMealSubmit={this.handleMealSubmit}/>
           <DailyTotals meals={this.state.meals}/>
-          <TodayMeals meals={this.state.meals} update={this.update}/>
+          <TodayMeals meals={this.state.meals} update={this.update} onEdit={this.handleEditClick}/>
         </Main>
       </DashboardContainer>
     )

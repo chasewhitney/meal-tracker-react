@@ -38,6 +38,23 @@ module.exports = app => {
     })
   });
 
+  app.put('/meals/updateMeal', (req, res) => {
+    ///////// validate
+    const user = req.user._id;
+    const today = new Date();
+    const date = new Date(today.getFullYear(), (today.getMonth()), today.getDate());
+    const meal = req.body;
+    console.log('updateMeal received:', meal);
+    Meal.findByIdAndUpdate(meal._id, meal)
+    .then(() => {
+      Meal.find({$and:[{date}, {user}] }).
+        then(meals => {
+          res.send(meals);
+        })
+    })
+
+  });
+
   // Add meal to user's favorites
   app.post('/meals/addFavorite', (req,res) => {
     const { _id } = req.user;
@@ -87,6 +104,8 @@ module.exports = app => {
         res.send(user);
       })
   });
+
+
 
 
 
