@@ -9,7 +9,6 @@ import axios from 'axios';
 import Favorites from './Favorites';
 import DailyTotals from './DailyTotals';
 import Dropdown from './dropdown/Dropdown';
-import NewMealForm from './NewMealForm';
 import AddMealBar from './AddMealBar';
 import TodayMeals from './TodayMeals';
 import AddMealForm from './AddMealForm';
@@ -19,7 +18,6 @@ const Popup = Modal.styled`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: yellow;
 `
 
 const DashboardContainer = styled.div`
@@ -27,8 +25,8 @@ const DashboardContainer = styled.div`
   display: flex;
 `;
 
+
 const Main = styled.div`
-  background-color: green;
   width: 100%;
 
   display: flex;
@@ -47,16 +45,16 @@ class Dashboard extends Component {
     this.setState((prevState) => ({ popupIsOpen: !prevState.popupIsOpen }))
   }
 
-  handleMealSubmit = async () => {
-    const {values} = this.props.form.addMeal;
+  handleMealSubmit = async (item) => {
+    console.log('hMS item:', item);
     let res = {};
 
-    if(values.editing) {
-      console.log('handleMealSubmit updating:', values);
-      res = await axios.put('/meals/updateMeal', values);
+    if(item.editing) {
+      console.log('handleMealSubmit updating:', item);
+      res = await axios.put('/meals/updateMeal', item);
     } else {
-      console.log('handleMealSubmit submitting new:', values);
-      res = await axios.post('/meals/addMeal', values);
+      console.log('handleMealSubmit submitting new:', item);
+      res = await axios.post('/meals/addMeal', item);
     }
     this.setState({meals: res.data, popupIsOpen: false});
     console.log('meals after submit:', this.state.meals);
@@ -142,7 +140,11 @@ class Dashboard extends Component {
             onBackgroundClick={this.toggleModal}
             onEscapeKeydown={this.toggleModal}
             >
-            <AddMealForm mealToAdd={this.state.mealToAdd} onFormSubmit={this.handleMealSubmit} />
+            <AddMealForm
+              mealToAdd={this.state.mealToAdd}
+              onFormSubmit={this.handleMealSubmit}
+              onCancel={this.toggleModal}
+              />
           </Popup>
           <AddMealBar handleDropdownClick={this.handleDropdownClick} handleMealSubmit={this.handleMealSubmit}/>
           <DailyTotals meals={this.state.meals}/>

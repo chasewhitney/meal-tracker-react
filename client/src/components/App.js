@@ -15,6 +15,13 @@ const AppContainer = styled.div`
 
 `;
 
+const Footer = styled.div`
+  width: 100%;
+  background-color: grey;
+  height: 100px;
+`;
+
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -27,6 +34,7 @@ class App extends Component {
             <Header />
             <Route exact path='/' component={Landing} />
             <Route exact path='/dashboard' component={Dashboard} />
+            <Footer />
           </AppContainer>
         </ModalProvider>
       </ BrowserRouter>

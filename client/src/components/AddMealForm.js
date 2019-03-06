@@ -47,16 +47,16 @@ const renderFields = (fields) => {
 
 
 let AddMealForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, submitting } = props
   return (
     <form onSubmit={handleSubmit(props.onFormSubmit)}>
       {renderFields(newMealFields)}
       <div>
+        <button type="button" disabled={submitting} onClick={props.onCancel}>
+          Cancel
+        </button>
         <button type="submit" disabled={submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
         </button>
       </div>
     </form>
@@ -65,13 +65,12 @@ let AddMealForm = props => {
 
 AddMealForm = reduxForm({
   form: 'addMeal', validate
-})(AddMealForm)
+})(AddMealForm);
 
 AddMealForm = connect(
   (state, ownProps) => ({
     initialValues: ownProps.mealToAdd
-
   })
-)(AddMealForm)
+)(AddMealForm);
 
 export default AddMealForm;

@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 const Favorites = styled.div`
-  background-color: yellow;
-  flex: 0 1 25%;
+  flex: 1 0 20%;
   flex-direction: column;
+  border-right: 1px solid grey;
+  min-height: 80vh;
+  align-items: center;
+  background-color: yellow;
+  text-align: center;
 `;
 
 function mapStateToProps({auth}) {

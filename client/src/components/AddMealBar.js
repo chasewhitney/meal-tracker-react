@@ -6,11 +6,11 @@ import _ from 'lodash';
 import Dropdown from './dropdown/Dropdown';
 
 const Inputs = styled.div`
-  background-color: red;
   padding: 1.5rem;
 
   display: flex;
   justify-content: space-around;
+  border-bottom: 1px solid grey;
 `;
 
 const ApiSearch = styled.input`
@@ -71,11 +71,11 @@ class AddMealBar extends Component {
   toggleFocus = () => {
     this.setState({ focus: !this.state.focus});
 
-      // setTimeout(function(){
-      //   if(!this.state.focus){
-      //     this.clearSearch();
-      //   }
-      // }.bind(this), 100);
+      setTimeout(function(){
+        if(!this.state.focus){
+          this.clearSearch();
+        }
+      }.bind(this), 100);
   }
 
   watchForClear = (e) => {
