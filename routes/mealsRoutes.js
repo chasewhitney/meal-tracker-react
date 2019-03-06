@@ -97,7 +97,7 @@ module.exports = app => {
 
     Favorite.findByIdAndDelete({_id})
       .then(() => {
-        return User.findById({_id: userId}).populate('favorites');
+        return User.findByIdAndUpdate({ _id: userId }, { $pull: { favorites: _id } }).populate('favorites');
       })
       .then(user => {
         console.log('deleteFavorite returning user:', user);
