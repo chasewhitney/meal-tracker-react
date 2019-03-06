@@ -18,11 +18,15 @@ module.exports = app => {
   );
 
   app.get('/api/current_user', (req, res) => {
-    const { _id } = req.user
-    console.log('request for user, sending:', req.user);
-    User.findById({_id}).populate('favorites').then(user => {
-      res.send(user);
-    });
+    if(req.user) {
+      const { _id } = req.user
+      console.log('request for user, sending:', req.user);
+      User.findById({_id}).populate('favorites').then(user => {
+        res.send(user);
+      });
+    } else {
+      res.send(req.user);
+    }
 
   });
 
