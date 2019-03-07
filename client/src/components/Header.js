@@ -7,20 +7,19 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavContainer = styled.div`
-  padding: 0;
   margin: 0;
   background-color: #28b485;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 5.2rem;
+  padding: 1rem;
 `;
 
 const Logo = styled(Link)`
   text-decoration: none;
   font-size: 2.5rem;
   color: white;
-  margin: 1rem;
 `;
 
 const NavItem = styled.div`

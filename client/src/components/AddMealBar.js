@@ -6,16 +6,20 @@ import _ from 'lodash';
 import Dropdown from './dropdown/Dropdown';
 
 const Inputs = styled.div`
-  padding: 1.5rem;
-
+  margin-top: -5rem;
   display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid grey;
+  justify-content: start;
+  align-items: center;
+  height: 5rem;
+
+  & * {
+    margin: 1rem;
+  }
 `;
 
 const ApiSearch = styled.input`
   width: 100%;
-  height: 3rem;
+  line-height: 2.8rem;
 `;
 
 const ApiBox = styled.div`
@@ -25,6 +29,7 @@ const ApiBox = styled.div`
 
   display: flex;
   flex-direction: column;
+
 `;
 
 const AddMealButton = styled.button`
@@ -87,14 +92,13 @@ class AddMealBar extends Component {
   render() {
     return (
       <Inputs>
-        <AddMealButton onClick={() => this.props.handleDropdownClick()}>Add a meal</AddMealButton>
         <ApiBox onKeyDown={this.watchForClear}
           onFocus={this.toggleFocus}
           onBlur={this.toggleFocus}
           tabIndex="0"
           >
           <ApiSearch
-            placeholder="Search for info"
+            placeholder="Add Entry From Food Database"
             value={this.state.term}
             onChange={this.handleInputChange}
             autoComplete="off"
@@ -104,6 +108,8 @@ class AddMealBar extends Component {
             handleDropdownClick={this.props.handleDropdownClick}
             />
         </ApiBox>
+        <div>or</div>
+        <AddMealButton onClick={() => this.props.handleDropdownClick()}>Add Custom Entry</AddMealButton>
       </Inputs>
     )
   }

@@ -6,11 +6,18 @@ import axios from 'axios';
 
 const MealItem = styled.div`
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: 2fr repeat(8, 1fr);
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+  justify-items: center;
+  align-items: center;
+
+  & div {
+    align-self: center;
+  }
 `;
 
 const TodayMeals = styled.div`
-  background-color: orangered;
   display: flex;
   flex-direction: column;
 `;
@@ -31,9 +38,11 @@ export default connect(null, actions)((props) => {
         return (
           <MealItem key={item._id}>
             <div style={{display: "flex"}}>
-              <img style={{height: "40px"}} src={item.img} alt="Food item" />
-              <div>{item.name}</div>
-              <div>{item.servings}servings</div>
+              <img style={{height: "50px", marginRight: "2rem"}} src={item.img} alt="Food item" />
+              <div>
+                <div style={{textAlign: "center"}}>{item.name}</div>
+                <div style={{textAlign: "center"}}>{item.servings} serving</div>
+              </div>
             </div>
             <div>{item.calories * item.servings} calories</div>
             <div>{item.fat * item.servings}g fat</div>
