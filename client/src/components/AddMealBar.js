@@ -6,7 +6,6 @@ import _ from 'lodash';
 import Dropdown from './dropdown/Dropdown';
 
 const Inputs = styled.div`
-  margin-top: -5rem;
   display: flex;
   justify-content: start;
   align-items: center;

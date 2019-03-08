@@ -41,7 +41,7 @@ export default connect(null, actions)((props) => {
               <img style={{height: "50px", marginRight: "2rem"}} src={item.img} alt="Food item" />
               <div>
                 <div style={{textAlign: "center"}}>{item.name}</div>
-                <div style={{textAlign: "center"}}>{item.servings} serving</div>
+                <div style={{textAlign: "center"}}>{item.servings} {item.servings > 1 ? 'servings' : 'serving'}</div>
               </div>
             </div>
             <div>{item.calories * item.servings} calories</div>

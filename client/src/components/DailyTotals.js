@@ -6,8 +6,12 @@ const TodayTotals = styled.div`
   border-bottom: solid 1px grey;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  & h2 {
+    margin-left: 2rem;
+  }
 `;
 
 const TotalCell =  styled.div`

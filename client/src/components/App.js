@@ -12,7 +12,7 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 
 const AppContainer = styled.div`
-
+  background-color: #F8F8F8;
 `;
 
 const Footer = styled.div`
@@ -34,7 +34,7 @@ class App extends Component {
             <Header />
             <Route exact path='/' component={Landing} />
             <Route exact path='/dashboard' component={Dashboard} />
-            <Footer />
+
           </AppContainer>
         </ModalProvider>
       </ BrowserRouter>

@@ -21,10 +21,17 @@ const Popup = Modal.styled`
 `
 
 const DashboardContainer = styled.div`
-  font-size: 1.5rem; //temp
-  display: flex;
+  background-color: #F8F8F8;
 `;
 
+const DashboardContent = styled.div`
+  font-size: 1.5rem; //temp
+  display: flex;
+  margin: 4rem auto;
+  background-color: white;
+  box-shadow: 0 2rem 5rem rgba(0,0,0,.06);
+  max-width: 117rem;
+`;
 
 const Main = styled.div`
   width: 100%;
@@ -133,23 +140,25 @@ class Dashboard extends Component {
     if(!this.props.auth) { return null; }
     return (
       <DashboardContainer>
-        <Favorites handleMealSubmit={this.handleMealSubmit}/>
-        <Main>
-          <Popup
-            isOpen={this.state.popupIsOpen}
-            onBackgroundClick={this.toggleModal}
-            onEscapeKeydown={this.toggleModal}
-            >
-            <AddMealForm
-              mealToAdd={this.state.mealToAdd}
-              onFormSubmit={this.handleMealSubmit}
-              onCancel={this.toggleModal}
-              />
-          </Popup>
-          <AddMealBar handleDropdownClick={this.handleDropdownClick} handleMealSubmit={this.handleMealSubmit}/>
-          <DailyTotals meals={this.state.meals}/>
-          <TodayMeals meals={this.state.meals} update={this.update} onEdit={this.handleEditClick}/>
-        </Main>
+        <DashboardContent>
+          <Favorites handleMealSubmit={this.handleMealSubmit}/>
+          <Main>
+            <Popup
+              isOpen={this.state.popupIsOpen}
+              onBackgroundClick={this.toggleModal}
+              onEscapeKeydown={this.toggleModal}
+              >
+              <AddMealForm
+                mealToAdd={this.state.mealToAdd}
+                onFormSubmit={this.handleMealSubmit}
+                onCancel={this.toggleModal}
+                />
+            </Popup>
+            <AddMealBar handleDropdownClick={this.handleDropdownClick} handleMealSubmit={this.handleMealSubmit}/>
+            <DailyTotals meals={this.state.meals}/>
+            <TodayMeals meals={this.state.meals} update={this.update} onEdit={this.handleEditClick}/>
+          </Main>
+        </DashboardContent>
       </DashboardContainer>
     )
   }
