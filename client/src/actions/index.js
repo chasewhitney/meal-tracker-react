@@ -10,23 +10,23 @@ export const fetchUser = () => async dispatch => {
 }
 
 // Fetches both branded and common food items for dropdown
-export const fetchApiAll = (term) => async dispatch => {
-
-  const config = {params: {searchQuery: term}};
-  const res = await axios.get('/api/instant', config);
-  console.log('res.data:', res.data);
-
-  const { data } = res;
-  for (var arr in data) {
-      if (data.hasOwnProperty(arr)) {
-        data[arr].splice(10,10);
-      }
-  }
-
-  data.all = { branded: data.branded.slice(0,5), common: data.common.slice(0,5)};
-  console.log('FD:', data);
-  dispatch({type: FETCH_API_ALL, payload: data});
-}
+// export const fetchApiAll = (term) => async dispatch => {
+//
+//   const config = {params: {searchQuery: term}};
+//   const res = await axios.get('/api/instant', config);
+//   console.log('res.data:', res.data);
+//
+//   const { data } = res;
+//   for (var arr in data) {
+//       if (data.hasOwnProperty(arr)) {
+//         data[arr].splice(10,10);
+//       }
+//   }
+//
+//   data.all = { branded: data.branded.slice(0,5), common: data.common.slice(0,5)};
+//   console.log('FD:', data);
+//   dispatch({type: FETCH_API_ALL, payload: data});
+// }
 
 ///////// PRODUCTION ///////////////
 // Fetches data on single API items
@@ -74,21 +74,21 @@ export const fetchApiItem = (id, type) => dispatch => {
 }
 //////////////////// END DEVELOPMENT /////////////////////////////////////////
 
-export const submitNewMeal = (meal) => async dispatch => {
-  const res = await axios.post('/meals/addMeal', meal);
-
-  console.log('submitNewMeal res.data', res.data);
-
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
-
-export const fetchMealsToday = () => async dispatch => {
-  const res = await axios.get('/meals/getToday');
-
-  console.log('fetchMealsToday res.data', res.data);
-
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
+// export const submitNewMeal = (meal) => async dispatch => {
+//   const res = await axios.post('/meals/addMeal', meal);
+//
+//   console.log('submitNewMeal res.data', res.data);
+//
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
+//
+// export const fetchMealsToday = () => async dispatch => {
+//   const res = await axios.get('/meals/getToday');
+//
+//   console.log('fetchMealsToday res.data', res.data);
+//
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
 
 export const addToFavorites = (item) => async dispatch => {
   console.log('addToFavorites action sending item:', item);
@@ -100,14 +100,14 @@ export const addToFavorites = (item) => async dispatch => {
   dispatch({type: FETCH_USER, payload: res.data});
 }
 
-export const deleteMeal = (id) => async dispatch => {
-  console.log('action deleting meal:', id);
-
-  const res = await axios.delete(`/meals/deleteMeal/${id}`);
-
-  console.log('deleting meal res.data:', res.data);
-  dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
-}
+// export const deleteMeal = (id) => async dispatch => {
+//   console.log('action deleting meal:', id);
+//
+//   const res = await axios.delete(`/meals/deleteMeal/${id}`);
+//
+//   console.log('deleting meal res.data:', res.data);
+//   dispatch({type: FETCH_MEALS_TODAY, payload: res.data});
+// }
 
 export const deleteFavorite = (id) => async dispatch => {
   console.log('action deleting favorite:', id);

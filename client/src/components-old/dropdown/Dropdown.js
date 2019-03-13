@@ -1,5 +1,3 @@
-// Custom built tabs component dropdown
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
@@ -21,6 +19,7 @@ const Tabs = styled.div`
 
   display: flex;
   flex-direction: column;
+
 `;
 
 const Label = styled.label`
@@ -113,33 +112,40 @@ const FocusBar = styled.div.attrs(({width, tab}) => ({
 
 
 class Dropdown extends Component {
-  state = { prevTab: 0, tab: 1, size: 0, width: 0, tabSwitchReady: true};
+  state = { prevTab: 0, tab: 1, size: 0, width: 0, ready: true};
   divHeights = [];
   divWidths = [];
+
+  componentDidMount() {
+    // console.log('Dropdown Mounted setting:');
+    // console.log('size:',  this.divHeights[this.state.tab].clientHeight);
+    // console.log('width:', this.divWidths[0].clientWidth);
+    this.setState({
+      size: this.divHeights[this.state.tab].clientHeight,
+      width: this.divWidths[0].clientWidth
+    });
+  }
 
   componentDidUpdate() {
     // console.log('updated Dropdown, tab:', this.state.tab);
     // console.log('this.divHeights', this.divHeights);
-    if(this.props.content.all){
-      if(this.state.size !== this.divHeights[this.state.tab].clientHeight){
-        this.setState({size: this.divHeights[this.state.tab].clientHeight});
-      }
+    if(this.state.size !== this.divHeights[this.state.tab].clientHeight){
+      this.setState({size: this.divHeights[this.state.tab].clientHeight});
     }
   }
 
   handleChange = (tab) => {
-    if(this.state.tabSwitchReady && this.state.tab !== tab) {
-      this.tabSwitchReady = !this.tabSwitchReady;
-      setTimeout(() => this.setState({tabSwitchReady: true}), 380);
-      this.setState(prevState => ({ tab: tab, prevTab: prevState.tab, tabSwitchReady: false}));
+    if(this.state.ready && this.state.tab !== tab) {
+      this.ready = !this.ready;
+      setTimeout(() => this.setState({ready: true}), 380);
+      this.setState(prevState => ({ tab: tab, prevTab: prevState.tab, ready: false}));
     }
   }
 
+
   render(){
-    // console.log('render dd:', this.props.content);
-    if(!this.props.content.all) { return null;}
     return (
-          <Tabs focused={this.state} >
+          <Tabs focused={this.state}>
             <LabelContainer ref={divElement => this.divWidths[0] = divElement}>
               <Label onClick={(e) => this.handleChange(1)} className="label-1">All</Label>
               <Label onClick={(e) => this.handleChange(2)} className="label-2">Branded</Label>
@@ -149,14 +155,14 @@ class Dropdown extends Component {
               className={this.state.tab > this.state.prevTab ? "right" : "left"}/>
             <ContentContainer size={this.state.size} ctab={this.state.tab} ptab={this.state.prevTab}>
               <TabContent className="content-1" ref={divElement => this.divHeights[1] = divElement}>
-                <CommonContent foodList={this.props.content.all.common} onClick={this.props.handleDropdownClick} />
-                <BrandedContent foodList={this.props.content.all.branded} onClick={this.props.handleDropdownClick} />
+                <CommonContent foodList={this.props.apiAll.all.common} onClick={this.props.handleClick} />
+                <BrandedContent foodList={this.props.apiAll.all.branded} onClick={this.props.handleClick} />
               </TabContent>
               <TabContent className="content-2" ref={divElement => this.divHeights[2] = divElement}>
-                <BrandedContent foodList={this.props.content.branded} onClick={this.props.handleDropdownClick} />
+                <BrandedContent foodList={this.props.apiAll.branded} onClick={this.props.handleClick} />
               </TabContent>
               <TabContent className="content-3" ref={divElement => this.divHeights[3] = divElement}>
-                <CommonContent foodList={this.props.content.common} onClick={this.props.handleDropdownClick}/>
+                <CommonContent foodList={this.props.apiAll.common} onClick={this.props.handleClick}/>
               </TabContent>
             </ContentContainer>
           </Tabs>

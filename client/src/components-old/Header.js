@@ -6,26 +6,29 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+
+
 const NavContainer = styled.div`
+  padding: 0;
   margin: 0;
   background-color: #28b485;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5.2rem;
-  padding: 1rem;
+  height: 70px;
 `;
 
 const Logo = styled(Link)`
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: white;
+  margin: 1rem;
 `;
 
 const NavItem = styled.div`
   padding: 0;
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   list-style: none;
   padding: 1rem;
   height: 100%;
@@ -46,7 +49,7 @@ const NavItem = styled.div`
 
 class Header extends Component {
   renderContent() {
-    console.log('auth:', this.props.auth);
+    // console.log('auth:', this.props.auth);
     switch(this.props.auth) {
       case null:
         return;
