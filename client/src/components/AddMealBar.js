@@ -10,9 +10,15 @@ const Inputs = styled.div`
   justify-content: start;
   align-items: center;
   height: 5rem;
+  border-bottom: 1px solid black;
+  padding: 3rem;
 
   & * {
     margin: 1rem;
+  }
+
+  & .date {
+    font-size: 2.5rem;
   }
 `;
 
@@ -32,6 +38,7 @@ const ApiBox = styled.div`
 `;
 
 const AddMealButton = styled.button`
+  margin-right: auto;
 `;
 
 class AddMealBar extends Component {
@@ -43,7 +50,12 @@ class AddMealBar extends Component {
     }
   }
 
-
+  showDate = () => {
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const today = new Date();
+    const date = `${days[today.getDay()]} ${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+    return date;
+  }
 
   handleInputChange = ({ target }) => {
     const term = target.value;
@@ -109,6 +121,7 @@ class AddMealBar extends Component {
         </ApiBox>
         <div>or</div>
         <AddMealButton onClick={() => this.props.handleDropdownClick()}>Add Custom Entry</AddMealButton>
+        <div className="date">{this.showDate()}</div>
       </Inputs>
     )
   }

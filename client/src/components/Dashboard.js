@@ -8,7 +8,6 @@ import axios from 'axios';
 
 import Favorites from './Favorites';
 import DailyTotals from './DailyTotals';
-import Dropdown from './dropdown/Dropdown';
 import AddMealBar from './AddMealBar';
 import TodayMeals from './TodayMeals';
 import AddMealForm from './AddMealForm';

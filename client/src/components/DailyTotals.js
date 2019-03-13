@@ -30,6 +30,13 @@ const TotalCell =  styled.div`
 const NetCell =  styled(TotalCell)`
   border-left: 1px solid grey;
 
+  & div.red {
+    color: #b42857;
+  }
+
+  & div.green {
+    color: #28B485;
+  }
 `;
 
 const calcDailyTotals = (meals) => {
@@ -48,6 +55,14 @@ const calcDailyTotals = (meals) => {
   return totals;
 }
 
+const getNetClass = (totals) => {
+  if (totals.carbs - totals.fiber <= 30) {
+    return "green";
+  } else {
+    return "red";
+  }
+}
+
 export default props => {
   if(props.meals.length === 0) {
     return <TodayTotals>No meals entered today</TodayTotals>;
@@ -55,7 +70,7 @@ export default props => {
   const totals = calcDailyTotals(props.meals)
   return (
     <TodayTotals>
-      <h2>TOTALS:</h2>
+      <h2>Daily Totals:</h2>
       <TotalCell>
         <h3>Calories</h3>
         <div>{totals.calories}</div>
@@ -82,7 +97,7 @@ export default props => {
       </TotalCell>
       <NetCell>
         <h3>Net Carbs</h3>
-        <div style={{fontSize: "4rem"}}>{totals.carbs - totals.fiber}g</div>
+        <div className={getNetClass(totals)}>{totals.carbs - totals.fiber}g</div>
       </NetCell>
     </TodayTotals>
   )
