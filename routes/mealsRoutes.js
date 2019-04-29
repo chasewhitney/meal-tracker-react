@@ -24,7 +24,10 @@ module.exports = app => {
     const user = req.user._id;
     const today = new Date();
     const date = new Date(today.getFullYear(), (today.getMonth()), today.getDate());
-    const mealToAdd = {...req.body, user, date};
+    // const mealToAdd = {...req.body, user, date};
+    const mealToAdd = req.body;
+    mealToAdd.user = user;
+    mealToAdd.date = date;
     mealToAdd.img = mealToAdd.img ? mealToAdd.img : "https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png";
     if(mealToAdd._id) {delete mealToAdd._id}
     const meal = new Meal(mealToAdd);
