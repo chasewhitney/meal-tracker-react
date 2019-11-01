@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Food-Tracker-React
 
-## Available Scripts
+Food-Tracker-React is a web application which allows the user to log in and track meals.
+Nutritional information can be entered manually, pulled from the Nutritionix API by means of a search bar and dropdown menu, or entered automatically from the Favorites list. The application will display daily calorie, fat, carbohydrate, fiber, sugar, protein, sodium, and net carb intake.
 
-In the project directory, you can run:
+## Built With
 
-### `npm start`
+MERN Stack: MongoDB, Express, React, Redux, Node, Passport, Google OAuth2, styled-components, Nutritionix API
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### `npm test`
+### Server Prerequisites
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/en/)
+- "body-parser": "^1.18.3",
+- "cookie-session": "^2.0.0-beta.3",
+- "express": "^4.16.4",
+- "mongoose": "^5.4.8",
+- "passport": "^0.4.0",
+- "passport-google-oauth20": "^1.0.0",
+- "request": "^2.88.0"
 
-### `npm run build`
+### Client Prerequisites
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- "axios": "^0.18.0",
+- "lodash": "^4.17.11",
+- "materialize-css": "^1.0.0",
+- "react": "^16.7.0",
+- "react-dom": "^16.7.0",
+- "react-redux": "^6.0.0",
+- "react-router-dom": "^4.3.1",
+- "react-scripts": "^2.1.5",
+- "redux": "^4.0.1",
+- "redux-form": "^8.1.0",
+- "redux-thunk": "^2.3.0",
+- "styled-components": "^4.1.3",
+- "styled-react-modal": "^1.2.1"
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Installing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A Mongo database with two collections: meals and users.
 
-### `npm run eject`
+## Screen Shot
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Coming soon.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Chase Whitney
