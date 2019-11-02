@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 - "express": "^4.16.4",
 - "mongoose": "^5.4.8",
 - "passport": "^0.4.0",
-- "passport-google-oauth20": "^1.0.0",
+- "passport-google-oauth20": "^2.0.0",
 - "request": "^2.88.0"
 
 ### Client Prerequisites
