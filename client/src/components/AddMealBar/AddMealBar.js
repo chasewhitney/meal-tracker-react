@@ -3,7 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import _ from "lodash";
 
-import Dropdown from "./dropdown/Dropdown";
+import { DaysOfTheWeek } from "../../fields/fields.js";
+import Dropdown from "../Dropdown/Dropdown.js";
 
 const Inputs = styled.div`
   display: flex;
@@ -50,17 +51,8 @@ class AddMealBar extends Component {
   }
 
   showDate = () => {
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ];
     const today = new Date();
-    const date = `${days[today.getDay()]} ${today.getMonth() +
+    const date = `${DaysOfTheWeek[today.getDay()]} ${today.getMonth() +
       1}/${today.getDate()}/${today.getFullYear()}`;
     return date;
   };

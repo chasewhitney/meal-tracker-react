@@ -6,11 +6,11 @@ import styled from "styled-components";
 import Modal from "styled-react-modal";
 import axios from "axios";
 
-import Sidebar from "./Sidebar";
-import DailyTotals from "./DailyTotals";
-import AddMealBar from "./AddMealBar";
-import TodayMeals from "./TodayMeals";
-import AddMealForm from "./AddMealForm";
+import Sidebar from "../Sidebar/Sidebar.js";
+import DailyTotals from "../DailyTotals/DailyTotals.js";
+import AddMealBar from "../AddMealBar/AddMealBar.js";
+import TodayMeals from "../TodayMeals/TodayMeals.js";
+import AddMealForm from "../AddMealForm/AddMealForm.js";
 
 const Popup = Modal.styled`
   width: 20rem;

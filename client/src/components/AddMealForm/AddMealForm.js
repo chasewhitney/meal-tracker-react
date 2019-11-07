@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import newMealFields from "./newMealFormFields";
-import MealField from "./MealField";
+import { NewMealFormFields } from "../../fields/fields.js";
+import MealField from "../MealField/MealField.js";
 
 const validate = values => {
   // console.log('validation values:', values);
@@ -12,15 +12,15 @@ const validate = values => {
     //  debugger;
   }
 
-  for (let i = 0; i < newMealFields.length; i++) {
-    const { name } = newMealFields[i];
+  for (let i = 0; i < NewMealFormFields.length; i++) {
+    const { name } = NewMealFormFields[i];
     if (!values[name] && values[name] !== 0) {
       errors[name] = "Required";
     } else if (name !== "name" && name !== "servingSize") {
       if (isNaN(Number(values[name]))) {
         errors[name] = "Must be a number";
       } else if (Number(values[name]) < 0) {
-        errors[name] = `${newMealFields[i].label} must be a positive value`;
+        errors[name] = `${NewMealFormFields[i].label} must be a positive value`;
       }
     }
   }
@@ -49,7 +49,7 @@ let AddMealForm = props => {
   const { handleSubmit, submitting } = props;
   return (
     <form onSubmit={handleSubmit(props.onFormSubmit)}>
-      {renderFields(newMealFields)}
+      {renderFields(NewMealFormFields)}
       <div>
         <button type="button" disabled={submitting} onClick={props.onCancel}>
           Cancel

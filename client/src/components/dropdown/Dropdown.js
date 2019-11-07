@@ -7,8 +7,8 @@ import styled from "styled-components";
 import * as actions from "../../actions";
 
 // import AllTab from './AllTab';
-import CommonContent from "./CommonContent";
-import BrandedContent from "./BrandedContent";
+import CommonContent from "../CommonContent/CommonContent.js";
+import BrandedContent from "../BrandedContent/BrandedContent.js";
 
 const Tabs = styled.div`
   position: absolute;
