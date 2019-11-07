@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
-const Favorites = styled.div`
+const Sidebar = styled.div`
   flex: 1 0 20%;
   flex-direction: column;
   border-right: 1px solid grey;
@@ -21,7 +21,7 @@ const FavItem = styled.div`
   position: relative;
   padding: 1rem 1rem;
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 
   & button {
     position: absolute;
@@ -30,33 +30,36 @@ const FavItem = styled.div`
   }
 `;
 
-function mapStateToProps({auth}) {
-  return {auth};
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
-export default connect(mapStateToProps, actions)(props => {
-  const {favorites} = props.auth;
-  if(favorites.length === 0) {
+export default connect(
+  mapStateToProps,
+  actions
+)(props => {
+  const { favorites } = props.auth;
+  if (favorites.length === 0) {
     return (
-      <Favorites>
+      <Sidebar>
         <h1>Favorites</h1>
         No favorites added yet
-      </Favorites>
+      </Sidebar>
     );
   }
-  return(
-    <Favorites>
+  return (
+    <Sidebar>
       <h1>Favorites</h1>
       {favorites.map(item => {
         return (
           <FavItem key={item._id}>
-            <div onClick={(e) => props.handleMealSubmit(item)}>
+            <div onClick={e => props.handleMealSubmit(item)}>
               {item.name} - {item.servingSize}
             </div>
             <button onClick={() => props.deleteFavorite(item._id)}>X</button>
           </FavItem>
-        )
+        );
       })}
-    </Favorites>
+    </Sidebar>
   );
 });

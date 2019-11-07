@@ -1,13 +1,13 @@
-//// Landing page after login ////
+//// Old Landing page after login ////
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import styled from 'styled-components';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import _ from "lodash";
+import styled from "styled-components";
+import * as actions from "../actions";
 
-import Dropdown from './dropdown/Dropdown';
-import NewMealForm from './NewMealForm';
+import Dropdown from "./dropdown/Dropdown";
+import NewMealForm from "./NewMealForm";
 
 const Inputs = styled.div`
   background-color: red;
@@ -22,8 +22,7 @@ const ApiSearch = styled.input`
   height: 3rem;
 `;
 
-const AddMealButton = styled.button`
-`;
+const AddMealButton = styled.button``;
 
 const ApiBox = styled.div`
   position: relative;
@@ -32,12 +31,11 @@ const ApiBox = styled.div`
 
   display: flex;
   flex-direction: column;
-
 `;
 
 const Popup = styled.div`
   position: fixed;
-  background-color: rgba(0,0,0,.80);
+  background-color: rgba(0, 0, 0, 0.8);
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -50,97 +48,117 @@ const Popup = styled.div`
 `;
 
 class AddMeal extends Component {
-  state = { term : '', focus: false, popup: false, toFetch: {id: '', type: ''} };
+  state = {
+    term: "",
+    focus: false,
+    popup: false,
+    toFetch: { id: "", type: "" }
+  };
 
-  fetchApiAll = _.debounce((term) => { this.props.fetchApiAll(term) }, 300 );
+  fetchApiAll = _.debounce(term => {
+    this.props.fetchApiAll(term);
+  }, 300);
 
   handleInputChange = ({ target }) => {
     const term = target.value;
-    this.setState({ term : term });
+    this.setState({ term: term });
 
-    if(term.length >= 3) {
+    if (term.length >= 3) {
       // console.log(term);
       this.fetchApiAll(term);
     }
-  }
+  };
 
   renderDropdown = () => {
-    if(this.state.term.length >= 3 && this.props.apiAll) {
+    if (this.state.term.length >= 3 && this.props.apiAll) {
       // console.log('rendering dropdown');
-      return <Dropdown handleClick={this.handleDropdownClick}/>
+      return <Dropdown handleClick={this.handleDropdownClick} />;
     }
-  }
+  };
 
   logState = () => {
     this.props.fetchMealsToday();
     console.log(this.state);
     console.log(this.props);
-  }
+  };
 
   clearSearch = () => {
-    this.setState({term: ''});
-  }
+    this.setState({ term: "" });
+  };
 
   toggleFocus = () => {
-    this.setState({ focus: !this.state.focus});
+    this.setState({ focus: !this.state.focus });
 
-      // setTimeout(function(){
-      //   if(!this.state.focus){
-      //     console.log('clearing search!');
-      //     this.clearSearch();
-      //   }
-      // }.bind(this), 100);
-  }
+    // setTimeout(function(){
+    //   if(!this.state.focus){
+    //     console.log('clearing search!');
+    //     this.clearSearch();
+    //   }
+    // }.bind(this), 100);
+  };
 
   renderPopup = () => {
-    if(this.state.popup)
-    return (
-      <Popup onClick={this.handleClickPopup}>
-        <NewMealForm closePopup={this.closePopup} addItem={this.state.toFetch} onSubmit={this.props.onMealSubmit}/>
-      </Popup>
-    );
-  }
+    if (this.state.popup)
+      return (
+        <Popup onClick={this.handleClickPopup}>
+          <NewMealForm
+            closePopup={this.closePopup}
+            addItem={this.state.toFetch}
+            onSubmit={this.props.onMealSubmit}
+          />
+        </Popup>
+      );
+  };
 
   handleDropdownClick = (id, type) => {
-    this.setState({toFetch: {id, type}, popup: true});
-  }
+    this.setState({ toFetch: { id, type }, popup: true });
+  };
 
-  handleCreateMealClick= () => {
-    this.setState({toFetch: {id: '', type:''}, popup: true});
-  }
+  handleCreateMealClick = () => {
+    this.setState({ toFetch: { id: "", type: "" }, popup: true });
+  };
 
-  handleClickPopup = (e) => {
-    if(e.currentTarget === e.target) {
+  handleClickPopup = e => {
+    if (e.currentTarget === e.target) {
       this.closePopup();
     }
-  }
+  };
 
   closePopup = () => {
-    this.setState({popup: false});
-  }
+    this.setState({ popup: false });
+  };
 
   render() {
     return (
-          <Inputs>
-            {this.renderPopup()}
-            <AddMealButton onClick={this.handleCreateMealClick}>Add a meal</AddMealButton>
-            <button onClick={this.logState}>Log State</button>
-            <ApiBox onFocus={this.toggleFocus} onBlur={this.toggleFocus} tabIndex="0">
-              <ApiSearch placeholder="Search for info"
-                value={this.state.term}
-                onChange={this.handleInputChange}
-                autoComplete="off"
-                />
-              {this.renderDropdown()}
-
-            </ApiBox>
-          </Inputs>
-    )
+      <Inputs>
+        {this.renderPopup()}
+        <AddMealButton onClick={this.handleCreateMealClick}>
+          Add a meal
+        </AddMealButton>
+        <button onClick={this.logState}>Log State</button>
+        <ApiBox
+          onFocus={this.toggleFocus}
+          onBlur={this.toggleFocus}
+          tabIndex="0"
+        >
+          <ApiSearch
+            placeholder="Search for info"
+            value={this.state.term}
+            onChange={this.handleInputChange}
+            autoComplete="off"
+          />
+          {this.renderDropdown()}
+        </ApiBox>
+      </Inputs>
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return {...state};
+  return { ...state };
 }
 
-export default connect(mapStateToProps, actions)(AddMeal);
+export default connect(
+  mapStateToProps,
+  actions
+)(AddMeal);

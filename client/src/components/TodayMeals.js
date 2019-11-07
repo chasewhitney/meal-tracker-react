@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import * as actions from '../actions';
-import axios from 'axios';
+import React from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import * as actions from "../actions";
+import axios from "axios";
 
 const MealItem = styled.div`
   display: grid;
@@ -23,13 +23,16 @@ const TodayMeals = styled.div`
 `;
 
 const deleteMeal = async (id, callback) => {
-  console.log('deleting meal:', id);
+  console.log("deleting meal:", id);
   const res = await axios.delete(`/meals/deleteMeal/${id}`);
   callback(res.data);
-}
+};
 
-export default connect(null, actions)((props) => {
-  if(!props.meals){
+export default connect(
+  null,
+  actions
+)(props => {
+  if (!props.meals) {
     return null;
   }
   return (
@@ -37,11 +40,17 @@ export default connect(null, actions)((props) => {
       {props.meals.map(item => {
         return (
           <MealItem key={item._id}>
-            <div style={{display: "flex"}}>
-              <img style={{height: "50px", marginRight: "2rem"}} src={item.img} alt="Food item" />
+            <div style={{ display: "flex" }}>
+              <img
+                style={{ height: "50px", marginRight: "2rem" }}
+                src={item.img}
+                alt="Food item"
+              />
               <div>
-                <div style={{textAlign: "center"}}>{item.name}</div>
-                <div style={{textAlign: "center"}}>{item.servings} {item.servings > 1 ? 'servings' : 'serving'}</div>
+                <div style={{ textAlign: "center" }}>{item.name}</div>
+                <div style={{ textAlign: "center" }}>
+                  {item.servings} {item.servings > 1 ? "servings" : "serving"}
+                </div>
               </div>
             </div>
             <div>{item.calories * item.servings} calories</div>
@@ -52,16 +61,20 @@ export default connect(null, actions)((props) => {
             <div>{item.sugar * item.servings}g sugar</div>
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
             <div>
-              <button onClick={() => props.addToFavorites(item)}>Favorite</button>
+              <button onClick={() => props.addToFavorites(item)}>
+                Favorite
+              </button>
               <button onClick={() => props.onEdit(item)}>Edit</button>
-              <button onClick={() => deleteMeal(item._id, props.update)}>Delete</button>
+              <button onClick={() => deleteMeal(item._id, props.update)}>
+                Delete
+              </button>
             </div>
           </MealItem>
-        )
+        );
       })}
     </TodayMeals>
-  )
-})
+  );
+});
 
 // <button onClick={() => {this.props.addToFavorites(item)}}>Favorite</button>
 // <button>Edit</button>
