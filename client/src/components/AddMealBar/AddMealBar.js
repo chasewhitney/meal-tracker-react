@@ -1,45 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import * as S from "./AddMealBar.jsx.js";
 import axios from "axios";
 import _ from "lodash";
 
 import { DaysOfTheWeek } from "../../fields/fields.js";
 import Dropdown from "../Dropdown/Dropdown.js";
-
-const Inputs = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  height: 5rem;
-  border-bottom: 1px solid black;
-  padding: 3rem;
-
-  & > * {
-    margin: 1rem;
-  }
-
-  & .date {
-    font-size: 2.5rem;
-  }
-`;
-
-const ApiSearch = styled.input`
-  width: 100%;
-  line-height: 2.8rem;
-`;
-
-const ApiBox = styled.div`
-  position: relative;
-  width: 40rem;
-  outline: none;
-
-  display: flex;
-  flex-direction: column;
-`;
-
-const AddMealButton = styled.button`
-  margin-right: auto;
-`;
 
 class AddMealBar extends Component {
   state = { term: "", dropdown: {}, focus: false };
@@ -107,14 +72,14 @@ class AddMealBar extends Component {
 
   render() {
     return (
-      <Inputs>
-        <ApiBox
+      <S.Inputs>
+        <S.ApiBox
           onKeyDown={this.watchForClear}
           onFocus={this.toggleFocus}
           onBlur={this.toggleFocus}
           tabIndex="0"
         >
-          <ApiSearch
+          <S.ApiSearch
             placeholder="Add Entry From Food Database"
             value={this.state.term}
             onChange={this.handleInputChange}
@@ -124,13 +89,13 @@ class AddMealBar extends Component {
             content={this.state.dropdown}
             handleDropdownClick={this.props.handleDropdownClick}
           />
-        </ApiBox>
+        </S.ApiBox>
         <div>or</div>
-        <AddMealButton onClick={() => this.props.handleDropdownClick()}>
+        <S.AddMealButton onClick={() => this.props.handleDropdownClick()}>
           Add Custom Entry
-        </AddMealButton>
+        </S.AddMealButton>
         <div className="date">{this.showDate()}</div>
-      </Inputs>
+      </S.Inputs>
     );
   }
 }

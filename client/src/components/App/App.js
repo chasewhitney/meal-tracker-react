@@ -4,22 +4,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 import * as actions from "../../actions";
-import styled from "styled-components";
+import * as S from "./App.jsx.js";
 import { ModalProvider } from "styled-react-modal";
 
 import Header from "../Header/Header.js";
 import Landing from "../Landing/Landing.js";
 import Dashboard from "../Dashboard/Dashboard.js";
-
-const AppContainer = styled.div`
-  background-color: #f8f8f8;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  background-color: grey;
-  height: 100px;
-`;
 
 class App extends Component {
   componentDidMount() {
@@ -29,11 +19,12 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ModalProvider>
-          <AppContainer>
+          <S.AppContainer>
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={Dashboard} />
-          </AppContainer>
+            <S.Footer />
+          </S.AppContainer>
         </ModalProvider>
       </BrowserRouter>
     );

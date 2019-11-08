@@ -1,34 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-
-const Sidebar = styled.div`
-  flex: 1 0 20%;
-  flex-direction: column;
-  border-right: 1px solid grey;
-  min-height: 80vh;
-  align-items: center;
-  text-align: center;
-
-  & * {
-    margin: 1rem;
-  }
-`;
-
-const FavItem = styled.div`
-  border: 1px solid black;
-  position: relative;
-  padding: 1rem 1rem;
-  cursor: pointer;
-  border-radius: 0.5rem;
-
-  & button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-`;
+import * as S from "./Sidebar.jsx.js";
 
 function mapStateToProps({ auth }) {
   return { auth };
@@ -41,25 +14,25 @@ export default connect(
   const { favorites } = props.auth;
   if (favorites.length === 0) {
     return (
-      <Sidebar>
+      <S.Sidebar>
         <h1>Favorites</h1>
         No favorites added yet
-      </Sidebar>
+      </S.Sidebar>
     );
   }
   return (
-    <Sidebar>
+    <S.Sidebar>
       <h1>Favorites</h1>
       {favorites.map(item => {
         return (
-          <FavItem key={item._id}>
+          <S.FavItem key={item._id}>
             <div onClick={e => props.handleMealSubmit(item)}>
               {item.name} - {item.servingSize}
             </div>
             <button onClick={() => props.deleteFavorite(item._id)}>X</button>
-          </FavItem>
+          </S.FavItem>
         );
       })}
-    </Sidebar>
+    </S.Sidebar>
   );
 });

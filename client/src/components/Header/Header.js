@@ -1,77 +1,42 @@
 //// Application header ////
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import styled from 'styled-components';
-
-const NavContainer = styled.div`
-  margin: 0;
-  background-color: #28b485;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 5.2rem;
-  padding: 1rem;
-`;
-
-const Logo = styled(Link)`
-  text-decoration: none;
-  font-size: 2.5rem;
-  color: white;
-`;
-
-const NavItem = styled.div`
-  padding: 0;
-  margin: 0;
-  font-size: 2rem;
-  list-style: none;
-  padding: 1rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-
-  a, a:visited, a:active {
-    text-decoration: none;
-    color: #eee;
-  }
-
-  &:hover {
-    background-color: #55c57a;
-  }
-
-`;
-
+import * as S from "./Header.jsx.js";
 
 class Header extends Component {
   renderContent() {
-    console.log('auth:', this.props.auth);
-    switch(this.props.auth) {
+    console.log("auth:", this.props.auth);
+    switch (this.props.auth) {
       case null:
         return;
       case false:
-        return <NavItem><a href='/auth/google'>Login with Google</a></NavItem>;
+        return (
+          <S.NavItem>
+            <a href="/auth/google">Login with Google</a>
+          </S.NavItem>
+        );
       default:
-        return <NavItem><a href="/api/logout">Logout</a></NavItem>;
+        return (
+          <S.NavItem>
+            <a href="/api/logout">Logout</a>
+          </S.NavItem>
+        );
     }
   }
 
-  render(){
+  render() {
     return (
-      <NavContainer>
-          <Logo to={this.props.auth ? '/dashboard' : '/'}>
-            FoodTracker
-          </Logo>
+      <S.NavContainer>
+        <S.Logo to={this.props.auth ? "/dashboard" : "/"}>FoodTracker</S.Logo>
         {this.renderContent()}
-      </NavContainer>
-
-    )
+      </S.NavContainer>
+    );
   }
-
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return state;
 }
 

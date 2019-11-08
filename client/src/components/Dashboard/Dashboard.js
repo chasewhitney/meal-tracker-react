@@ -2,42 +2,14 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import Modal from "styled-react-modal";
 import axios from "axios";
+import * as S from "./Dashboard.jsx.js";
 
 import Sidebar from "../Sidebar/Sidebar.js";
 import DailyTotals from "../DailyTotals/DailyTotals.js";
 import AddMealBar from "../AddMealBar/AddMealBar.js";
 import TodayMeals from "../TodayMeals/TodayMeals.js";
 import AddMealForm from "../AddMealForm/AddMealForm.js";
-
-const Popup = Modal.styled`
-  width: 20rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const DashboardContainer = styled.div`
-  background-color: #f8f8f8;
-`;
-
-const DashboardContent = styled.div`
-  font-size: 1.5rem; //temp
-  display: flex;
-  margin: 4rem auto;
-  background-color: white;
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.06);
-  max-width: 117rem;
-`;
-
-const Main = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-`;
 
 class Dashboard extends Component {
   state = { meals: [], popupIsOpen: false, mealToAdd: {}, editing: false };
@@ -135,11 +107,11 @@ class Dashboard extends Component {
       return null;
     }
     return (
-      <DashboardContainer>
-        <DashboardContent>
+      <S.DashboardContainer>
+        <S.DashboardContent>
           <Sidebar handleMealSubmit={this.handleMealSubmit} />
-          <Main>
-            <Popup
+          <S.Main>
+            <S.Popup
               isOpen={this.state.popupIsOpen}
               onBackgroundClick={this.toggleModal}
               onEscapeKeydown={this.toggleModal}
@@ -149,7 +121,7 @@ class Dashboard extends Component {
                 onFormSubmit={this.handleMealSubmit}
                 onCancel={this.toggleModal}
               />
-            </Popup>
+            </S.Popup>
             <AddMealBar
               handleDropdownClick={this.handleDropdownClick}
               handleMealSubmit={this.handleMealSubmit}
@@ -160,9 +132,9 @@ class Dashboard extends Component {
               update={this.update}
               onEdit={this.handleEditClick}
             />
-          </Main>
-        </DashboardContent>
-      </DashboardContainer>
+          </S.Main>
+        </S.DashboardContent>
+      </S.DashboardContainer>
     );
   }
 }

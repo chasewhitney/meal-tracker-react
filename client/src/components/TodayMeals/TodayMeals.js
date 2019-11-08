@@ -1,26 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
+import * as S from "./TodayMeals.jsx.js";
 import * as actions from "../../actions";
 import axios from "axios";
-
-const MealItem = styled.div`
-  display: grid;
-  grid-template-columns: 2fr repeat(8, 1fr);
-  padding: 1rem;
-  border-bottom: 1px solid grey;
-  justify-items: center;
-  align-items: center;
-
-  & div {
-    align-self: center;
-  }
-`;
-
-const TodayMeals = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const deleteMeal = async (id, callback) => {
   console.log("deleting meal:", id);
@@ -36,10 +18,10 @@ export default connect(
     return null;
   }
   return (
-    <TodayMeals>
+    <S.TodayMeals>
       {props.meals.map(item => {
         return (
-          <MealItem key={item._id}>
+          <S.MealItem key={item._id}>
             <div style={{ display: "flex" }}>
               <img
                 style={{ height: "50px", marginRight: "2rem" }}
@@ -69,10 +51,10 @@ export default connect(
                 Delete
               </button>
             </div>
-          </MealItem>
+          </S.MealItem>
         );
       })}
-    </TodayMeals>
+    </S.TodayMeals>
   );
 });
 

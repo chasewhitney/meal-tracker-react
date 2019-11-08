@@ -1,50 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import * as S from "./DailyTotals.jsx.js";
 
-const TodayTotals = styled.div`
-  font-size: 1.8rem;
-  border-bottom: solid 1px grey;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  & h2 {
-    margin-left: 2rem;
-  }
-`;
-
-const TotalCell =  styled.div`
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-
-  & div {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-`;
-
-const NetCell =  styled(TotalCell)`
-  border-left: 1px solid grey;
-
-  & div.red {
-    color: #b42857;
-  }
-
-  & div.green {
-    color: #28B485;
-  }
-`;
-
-const calcDailyTotals = (meals) => {
+const calcDailyTotals = meals => {
   const totals = {};
   meals.forEach(val => {
-    for(let prop in val){
-      if(typeof val[prop] === "number" && prop !== "servings" && prop !== "__v"){
-        if(totals[prop]) {
+    for (let prop in val) {
+      if (
+        typeof val[prop] === "number" &&
+        prop !== "servings" &&
+        prop !== "__v"
+      ) {
+        if (totals[prop]) {
           totals[prop] += val[prop] * val["servings"];
         } else {
           totals[prop] = val[prop] * val["servings"];
@@ -53,52 +19,54 @@ const calcDailyTotals = (meals) => {
     }
   });
   return totals;
-}
+};
 
-const getNetClass = (totals) => {
+const getNetClass = totals => {
   if (totals.carbs - totals.fiber <= 30) {
     return "green";
   } else {
     return "red";
   }
-}
+};
 
 export default props => {
-  if(props.meals.length === 0) {
-    return <TodayTotals>No meals entered today</TodayTotals>;
+  if (props.meals.length === 0) {
+    return <S.TodayTotals>No meals entered today</S.TodayTotals>;
   }
-  const totals = calcDailyTotals(props.meals)
+  const totals = calcDailyTotals(props.meals);
   return (
-    <TodayTotals>
+    <S.TodayTotals>
       <h2>Daily Totals:</h2>
-      <TotalCell>
+      <S.TotalCell>
         <h3>Calories</h3>
         <div>{totals.calories}</div>
-      </TotalCell>
-      <TotalCell>
+      </S.TotalCell>
+      <S.TotalCell>
         <h3>Fat</h3>
         <div>{totals.fat}g</div>
-      </TotalCell>
-      <TotalCell>
+      </S.TotalCell>
+      <S.TotalCell>
         <h3>Protein</h3>
         <div>{totals.protein}g</div>
-      </TotalCell>
-      <TotalCell>
+      </S.TotalCell>
+      <S.TotalCell>
         <h3>Carbs</h3>
         <div>{totals.carbs}g</div>
-      </TotalCell>
-      <TotalCell>
+      </S.TotalCell>
+      <S.TotalCell>
         <h3>Fiber</h3>
         <div>{totals.fiber}g</div>
-      </TotalCell>
-      <TotalCell>
+      </S.TotalCell>
+      <S.TotalCell>
         <h3>Sugar</h3>
         <div>{totals.sugar}g</div>
-      </TotalCell>
-      <NetCell>
+      </S.TotalCell>
+      <S.NetCell>
         <h3>Net Carbs</h3>
-        <div className={getNetClass(totals)}>{totals.carbs - totals.fiber}g</div>
-      </NetCell>
-    </TodayTotals>
-  )
+        <div className={getNetClass(totals)}>
+          {totals.carbs - totals.fiber}g
+        </div>
+      </S.NetCell>
+    </S.TodayTotals>
+  );
 };
