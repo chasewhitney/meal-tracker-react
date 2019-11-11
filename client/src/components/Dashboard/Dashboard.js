@@ -66,9 +66,8 @@ class Dashboard extends Component {
     // this.setState({mealToAdd: foodObj});
     // this.toggleModal();
 
-    ////////////////////////////////
+    ////////// END DEV //////////////////////
 
-    ////////// PRODUCTION ///////////////////////
     if (!id) {
       console.log("clicked AddMealButton");
       this.setState({ mealToAdd: {} });
@@ -91,17 +90,18 @@ class Dashboard extends Component {
   };
 
   //////// DEV /////////////////////////////
-  logState = () => {
-    console.log("meals:", this.state.meals);
-    console.log("auth:", this.props.auth);
-  };
+  // logState = () => {
+  //   console.log("meals:", this.state.meals);
+  //   console.log("auth:", this.props.auth);
+  // };
+  //
+  // onFormSubmit = () => {
+  //   console.log("form was submitted");
+  //   console.log("SUBMIT:", this.props.form.addMealForm.values);
+  //   this.toggleModal();
+  // };
+  //////////// END DEV ////////////////////
 
-  onFormSubmit = () => {
-    console.log("form was submitted");
-    console.log("SUBMIT:", this.props.form.addMealForm.values);
-    this.toggleModal();
-  };
-  ///////////////////////////////////////////
   render() {
     if (!this.props.auth) {
       return null;

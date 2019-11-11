@@ -47,6 +47,7 @@ const renderFields = fields => {
 
 let AddMealForm = props => {
   const { handleSubmit, submitting } = props;
+  console.log("HELLO" + props.mealToAdd.ToString);
   return (
     <form onSubmit={handleSubmit(props.onFormSubmit)}>
       {renderFields(NewMealFormFields)}

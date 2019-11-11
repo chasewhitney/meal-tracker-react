@@ -6,23 +6,15 @@ import { connect } from "react-redux";
 import * as S from "./Header.jsx.js";
 
 class Header extends Component {
-  renderContent() {
-    console.log("auth:", this.props.auth);
+  renderLogoLink() {
+    console.log("Header-auth:", this.props.auth);
     switch (this.props.auth) {
       case null:
         return;
       case false:
-        return (
-          <S.NavItem>
-            <a href="/auth/google">Login with Google</a>
-          </S.NavItem>
-        );
+        return <a href="/auth/google">Login with Google</a>;
       default:
-        return (
-          <S.NavItem>
-            <a href="/api/logout">Logout</a>
-          </S.NavItem>
-        );
+        return <a href="/api/logout">Logout</a>;
     }
   }
 
@@ -30,7 +22,7 @@ class Header extends Component {
     return (
       <S.NavContainer>
         <S.Logo to={this.props.auth ? "/dashboard" : "/"}>FoodTracker</S.Logo>
-        {this.renderContent()}
+        <S.NavItem>{this.renderLogoLink()}</S.NavItem>
       </S.NavContainer>
     );
   }

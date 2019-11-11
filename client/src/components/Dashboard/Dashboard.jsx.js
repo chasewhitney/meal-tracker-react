@@ -6,6 +6,7 @@ export const Popup = Modal.styled`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: red;
 `;
 
 export const DashboardContainer = styled.div`

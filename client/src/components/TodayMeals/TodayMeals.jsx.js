@@ -10,6 +10,15 @@ export const MealItem = styled.div`
 
   & div {
     align-self: center;
+    padding: 2px;
+    margin: 1px;
+  }
+  & button {
+    margin: 3px;
+  }
+
+  & div < button {
+    background-color: green;
   }
 `;
 

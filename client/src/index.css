@@ -1,21 +1,38 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* background-color: black; */
 }
 
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 
+  /* min-height: 100vh; */
+  /* height: 100%; */
+  /* background-color: blue; */
+
+  /* border: 5px solid green; */
+}
+
+#root {
+  background-color: red;
+  /* border: 5px solid orange; */
+}
+
+/* ModalProvider dependency renders an extra, empty
+div at end of #root div so we use first-child*/
+#root > div:first-child {
   min-height: 100vh;
+  /* border: 5px solid blue; */
 }
