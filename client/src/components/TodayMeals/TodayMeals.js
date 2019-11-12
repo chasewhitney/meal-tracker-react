@@ -4,22 +4,16 @@ import * as S from "./TodayMeals.jsx.js";
 import * as actions from "../../actions";
 import axios from "axios";
 
-const deleteMeal = async (id, callback) => {
-  console.log("deleting meal:", id);
-  const res = await axios.delete(`/meals/deleteMeal/${id}`);
-  callback(res.data);
-};
-
 export default connect(
   null,
   actions
 )(props => {
-  if (!props.meals) {
+  if (!props.todayMeals) {
     return null;
   }
   return (
     <S.TodayMeals>
-      {props.meals.map(item => {
+      {props.todayMeals.map(item => {
         return (
           <S.MealItem key={item._id}>
             <div style={{ display: "flex" }}>
@@ -43,13 +37,11 @@ export default connect(
             <div>{item.sugar * item.servings}g sugar</div>
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
             <div>
-              <button onClick={() => props.addToFavorites(item)}>
+              <button onClick={() => props.addMealToFavorites(item)}>
                 Favorite
               </button>
               <button onClick={() => props.onEdit(item)}>Edit</button>
-              <button onClick={() => deleteMeal(item._id, props.update)}>
-                Delete
-              </button>
+              <button onClick={() => props.onDelete(item._id)}>Delete</button>
             </div>
           </S.MealItem>
         );
@@ -57,23 +49,3 @@ export default connect(
     </S.TodayMeals>
   );
 });
-
-// <button onClick={() => {this.props.addToFavorites(item)}}>Favorite</button>
-// <button>Edit</button>
-// <button onClick={() => {this.handleMealDelete(item._id)}}>Delete</button>
-
-// handleMealSubmit = async (e, itemToAdd) => {
-//   e.preventDefault();
-//   console.log('in submitNewMeal:', itemToAdd);
-//   await this.props.submitNewMeal(itemToAdd);
-//   await this.setState({meals: this.props.todayMeals});
-//   console.log('this.state.meals hMS:', this.state.meals);
-//   this.calcDailyTotals();
-// }
-//
-// handleMealDelete = async (id) => {
-//   await this.props.deleteMeal(id);
-//   await this.setState({meals: this.props.todayMeals});
-//   console.log('this.state.meals hMD:', this.state.meals);
-//   this.calcDailyTotals();
-// }

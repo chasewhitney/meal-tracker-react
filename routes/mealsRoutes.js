@@ -94,7 +94,7 @@ module.exports = app => {
         });
   });
 
-  app.delete('/meals/deleteFavorite/:_id', (req, res) => {
+  app.delete('/meals/deleteMealFromFavorites/:_id', (req, res) => {
     const { _id } = req.params;
     const userId = req.user._id;
 
@@ -103,7 +103,7 @@ module.exports = app => {
         return User.findByIdAndUpdate({ _id: userId }, { $pull: { favorites: _id } }).populate('favorites');
       })
       .then(user => {
-        console.log('deleteFavorite returning user:', user);
+        console.log('deleteMealFromFavorites returning user:', user);
         res.send(user);
       })
   });

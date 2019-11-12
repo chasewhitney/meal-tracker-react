@@ -9,35 +9,48 @@ import CommonContent from "../CommonContent/CommonContent.js";
 import BrandedContent from "../BrandedContent/BrandedContent.js";
 
 class Dropdown extends Component {
-  state = { prevTab: 0, tab: 1, size: 0, width: 0, tabSwitchReady: true };
+  state = {
+    previousTab: 0,
+    currentTab: 1,
+    currentTabHeight: 0,
+    currentTabWidth: 0,
+    tabSwitchReady: true
+  };
+
   divHeights = [];
-  divWidths = [];
+  divWidth;
 
   componentDidUpdate() {
-    // console.log('updated Dropdown, tab:', this.state.tab);
+    // console.log('updated Dropdown, currentTab:', this.state.currentTab);
     // console.log('this.divHeights', this.divHeights);
     if (this.props.content.all) {
-      if (this.state.size !== this.divHeights[this.state.tab].clientHeight) {
+      if (
+        this.state.currentTabHeight !==
+        this.divHeights[this.state.currentTab].clientHeight
+      ) {
         this.setState({
-          size: this.divHeights[this.state.tab].clientHeight,
-          width: this.divWidths[0].clientWidth
+          currentTabHeight: this.divHeights[this.state.currentTab].clientHeight,
+          currentTabWidth: this.divWidth.clientWidth
         });
       }
     }
   }
 
-  handleChange = tab => {
-    if (this.state.tabSwitchReady && this.state.tab !== tab) {
+  handleTabChange = tab => {
+    if (this.state.tabSwitchReady && this.state.currentTab !== tab) {
       this.tabSwitchReady = !this.tabSwitchReady;
       setTimeout(() => this.setState({ tabSwitchReady: true }), 380);
       this.setState(prevState => ({
-        tab: tab,
-        prevTab: prevState.tab,
+        currentTab: tab,
+        previousTab: prevState.currentTab,
         tabSwitchReady: false
       }));
     }
   };
 
+  // S.ContentContainer ref={divElement => (this.divHeights[1] = divElement)}
+  // Saves the height of each dropdown tab's content so that the ContentContainer
+  // can have a dynamic height
   render() {
     // console.log('render dd:', this.props.content);
     if (!this.props.content.all) {
@@ -45,26 +58,28 @@ class Dropdown extends Component {
     }
     return (
       <S.Tabs focused={this.state}>
-        <S.LabelContainer ref={divElement => (this.divWidths[0] = divElement)}>
-          <S.Label onClick={e => this.handleChange(1)} className="label-1">
+        <S.LabelContainer ref={divElement => (this.divWidth = divElement)}>
+          <S.Label onClick={e => this.handleTabChange(1)} className="label-1">
             All
           </S.Label>
-          <S.Label onClick={e => this.handleChange(2)} className="label-2">
+          <S.Label onClick={e => this.handleTabChange(2)} className="label-2">
             Branded
           </S.Label>
-          <S.Label onClick={e => this.handleChange(3)} className="label-3">
+          <S.Label onClick={e => this.handleTabChange(3)} className="label-3">
             Common
           </S.Label>
         </S.LabelContainer>
         <S.FocusBar
-          width={this.state.width}
-          tab={this.state.tab}
-          className={this.state.tab > this.state.prevTab ? "right" : "left"}
+          width={this.state.currentTabWidth}
+          tab={this.state.currentTab}
+          className={
+            this.state.currentTab > this.state.previousTab ? "right" : "left"
+          }
         />
         <S.ContentContainer
-          size={this.state.size}
-          ctab={this.state.tab}
-          ptab={this.state.prevTab}
+          size={this.state.currentTabHeight}
+          currentTab={this.state.currentTab}
+          previousTab={this.state.previousTab}
         >
           <S.TabContent
             className="content-1"
@@ -72,11 +87,11 @@ class Dropdown extends Component {
           >
             <CommonContent
               foodList={this.props.content.all.common}
-              onClick={this.props.handleDropdownClick}
+              onClick={this.props.handleAddMealClick}
             />
             <BrandedContent
               foodList={this.props.content.all.branded}
-              onClick={this.props.handleDropdownClick}
+              onClick={this.props.handleAddMealClick}
             />
           </S.TabContent>
           <S.TabContent
@@ -85,7 +100,7 @@ class Dropdown extends Component {
           >
             <BrandedContent
               foodList={this.props.content.branded}
-              onClick={this.props.handleDropdownClick}
+              onClick={this.props.handleAddMealClick}
             />
           </S.TabContent>
           <S.TabContent
@@ -94,7 +109,7 @@ class Dropdown extends Component {
           >
             <CommonContent
               foodList={this.props.content.common}
-              onClick={this.props.handleDropdownClick}
+              onClick={this.props.handleAddMealClick}
             />
           </S.TabContent>
         </S.ContentContainer>

@@ -7,11 +7,11 @@ import { DaysOfTheWeek } from "../../fields/fields.js";
 import Dropdown from "../Dropdown/Dropdown.js";
 
 class AddMealBar extends Component {
-  state = { term: "", dropdown: {}, focus: false };
+  state = { searchTerm: "", dropdownData: {}, dropdownIsFocused: false };
 
   componentDidUpdate() {
-    if (this.state.term.length < 3 && this.state.dropdown.all) {
-      this.setState({ dropdown: {} });
+    if (this.state.searchTerm.length < 3 && this.state.dropdownData.all) {
+      this.setState({ dropdownData: {} });
     }
   }
 
@@ -22,51 +22,54 @@ class AddMealBar extends Component {
     return date;
   };
 
+  // Handle searchbar input change
   handleInputChange = ({ target }) => {
-    const term = target.value;
-    this.setState({ term });
+    const searchTerm = target.value;
+    this.setState({ searchTerm });
 
-    if (term.length >= 3) {
-      // console.log(term);
-      this.debounceFetchDropdown(term);
+    if (searchTerm.length >= 3) {
+      // console.log(searchTerm);
+      this.debounceFetchDropdown(searchTerm);
     }
   };
 
-  fetchDropdownList = async term => {
-    console.log("fetchDropdownList term:", term);
-    const config = { params: { searchQuery: term } };
+  // Submit query to Nutritionix API and receive dropdown data
+  fetchDropdownList = async searchTerm => {
+    console.log("fetchDropdownList searchTerm:", searchTerm);
+    const config = { params: { searchQuery: searchTerm } };
     const res = await axios.get("/api/instant", config);
 
-    console.log("FD:", res.data);
-
-    this.setState({ dropdown: res.data });
+    console.log("fetchDropdownList setting state.dropdownData", res.data);
+    this.setState({ dropdownData: res.data });
   };
 
-  debounceFetchDropdown = _.debounce(term => {
-    this.fetchDropdownList(term);
+  // Wait 300ms for user to stop entering text into search input before querying API
+  debounceFetchDropdown = _.debounce(searchTerm => {
+    this.fetchDropdownList(searchTerm);
   }, 300);
 
-  clearSearch = () => {
+  clearSearchInput = () => {
     console.log("clearing search!");
-    this.setState({ term: "", dropdown: {} });
+    this.setState({ searchTerm: "", dropdownData: {} });
   };
 
+  // Clear searchbar input and hidedropdown if dropdown loses focus
   toggleFocus = () => {
-    this.setState({ focus: !this.state.focus });
-
+    this.setState({ dropdownIsFocused: !this.state.dropdownIsFocused });
     setTimeout(
       function() {
-        if (!this.state.focus) {
-          this.clearSearch();
+        if (!this.state.dropdownIsFocused) {
+          this.clearSearchInput();
         }
       }.bind(this),
       100
     );
   };
 
+  // Clear searchbar input and hide dropdown if user presses ESC key
   watchForClear = e => {
     if (e.keyCode === 27) {
-      this.clearSearch();
+      this.clearSearchInput();
     }
   };
 
@@ -81,17 +84,17 @@ class AddMealBar extends Component {
         >
           <S.ApiSearch
             placeholder="Add Entry From Food Database"
-            value={this.state.term}
+            value={this.state.searchTerm}
             onChange={this.handleInputChange}
             autoComplete="off"
           />
           <Dropdown
-            content={this.state.dropdown}
-            handleDropdownClick={this.props.handleDropdownClick}
+            content={this.state.dropdownData}
+            handleAddMealClick={this.props.handleAddMealClick}
           />
         </S.ApiBox>
         <div>or</div>
-        <S.AddMealButton onClick={() => this.props.handleDropdownClick()}>
+        <S.AddMealButton onClick={() => this.props.handleAddMealClick()}>
           Add Custom Entry
         </S.AddMealButton>
         <div className="date">{this.showDate()}</div>

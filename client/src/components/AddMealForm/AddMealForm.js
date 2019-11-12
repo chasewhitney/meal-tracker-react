@@ -7,6 +7,7 @@ import MealField from "../MealField/MealField.js";
 const validate = values => {
   // console.log('validation values:', values);
   const errors = {};
+
   if (Number(values.carbs) < Number(values.fiber) + Number(values.sugar)) {
     errors.carbs = "Total carbs cannot be less than sugar and fiber combined.";
     //  debugger;

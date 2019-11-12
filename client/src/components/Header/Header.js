@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import * as S from "./Header.jsx.js";
 
 class Header extends Component {
-  renderLogoLink() {
+  renderNavLink() {
     console.log("Header-auth:", this.props.auth);
     switch (this.props.auth) {
       case null:
@@ -22,7 +22,7 @@ class Header extends Component {
     return (
       <S.NavContainer>
         <S.Logo to={this.props.auth ? "/dashboard" : "/"}>FoodTracker</S.Logo>
-        <S.NavItem>{this.renderLogoLink()}</S.NavItem>
+        <S.NavItem>{this.renderNavLink()}</S.NavItem>
       </S.NavContainer>
     );
   }

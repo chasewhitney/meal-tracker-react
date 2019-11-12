@@ -52,7 +52,7 @@ export const ContentContainer = styled.div.attrs()`
 
   transition: height 0.375s ease-in-out;
 
-  & .content-${props => props.ctab} {
+  & .content-${props => props.currentTab} {
     opacity: 1;
     margin-left: 0;
 
@@ -61,7 +61,7 @@ export const ContentContainer = styled.div.attrs()`
     }
   }
 
-  & .content-${props => props.ptab} {
+  & .content-${props => props.previousTab} {
     opacity: 1;
   }
 `;

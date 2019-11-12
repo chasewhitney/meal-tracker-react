@@ -9,20 +9,20 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const addToFavorites = item => async dispatch => {
-  console.log("addToFavorites action sending item:", item);
+export const addMealToFavorites = item => async dispatch => {
+  console.log("addMealToFavorites action sending item:", item);
 
   const res = await axios.post("/meals/addFavorite", item);
 
-  console.log("addToFavorites res.data:", res.data);
+  console.log("addMealToFavorites res.data:", res.data);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const deleteFavorite = id => async dispatch => {
+export const deleteMealFromFavorites = id => async dispatch => {
   console.log("action deleting favorite:", id);
 
-  const res = await axios.delete(`/meals/deleteFavorite/${id}`);
+  const res = await axios.delete(`/meals/deleteMealFromFavorites/${id}`);
 
   console.log("deleting favorite res.data:", res.data);
   dispatch({ type: FETCH_USER, payload: res.data });

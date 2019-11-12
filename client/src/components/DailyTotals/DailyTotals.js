@@ -3,17 +3,17 @@ import * as S from "./DailyTotals.jsx.js";
 
 const calcDailyTotals = meals => {
   const totals = {};
-  meals.forEach(val => {
-    for (let prop in val) {
+  meals.forEach(meal => {
+    for (let prop in meal) {
       if (
-        typeof val[prop] === "number" &&
+        typeof meal[prop] === "number" &&
         prop !== "servings" &&
         prop !== "__v"
       ) {
         if (totals[prop]) {
-          totals[prop] += val[prop] * val["servings"];
+          totals[prop] += meal[prop] * meal["servings"];
         } else {
-          totals[prop] = val[prop] * val["servings"];
+          totals[prop] = meal[prop] * meal["servings"];
         }
       }
     }
