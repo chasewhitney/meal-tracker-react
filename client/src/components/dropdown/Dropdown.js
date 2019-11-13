@@ -20,10 +20,21 @@ class Dropdown extends Component {
   divHeights = [];
   divWidth;
 
+  thereIsContentToRender = () => {
+    if (this.props.content.all) {
+      return (
+        this.props.content.branded.length != 0 ||
+        this.props.content.common.length != 0
+      );
+    } else {
+      return null;
+    }
+  };
+
   componentDidUpdate() {
     // console.log('updated Dropdown, currentTab:', this.state.currentTab);
     // console.log('this.divHeights', this.divHeights);
-    if (this.props.content.all) {
+    if (this.thereIsContentToRender()) {
       if (
         this.state.currentTabHeight !==
         this.divHeights[this.state.currentTab].clientHeight
@@ -53,7 +64,7 @@ class Dropdown extends Component {
   // can have a dynamic height
   render() {
     // console.log('render dd:', this.props.content);
-    if (!this.props.content.all) {
+    if (!this.thereIsContentToRender()) {
       return null;
     }
     return (

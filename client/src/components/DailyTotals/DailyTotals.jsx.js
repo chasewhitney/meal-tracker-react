@@ -36,3 +36,10 @@ export const NetCell = styled(TotalCell)`
     color: #28b485;
   }
 `;
+
+export const NoTotals = styled.div`
+  font-size: 3rem;
+  border-bottom: solid 1px grey;
+  text-align: center;
+  padding: 10px;
+`;

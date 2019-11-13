@@ -31,7 +31,7 @@ const getNetClass = totals => {
 
 export default props => {
   if (props.meals.length === 0) {
-    return <S.TodayTotals>No meals entered today</S.TodayTotals>;
+    return <S.NoTotals>No entries yet today..</S.NoTotals>;
   }
   const totals = calcDailyTotals(props.meals);
   return (

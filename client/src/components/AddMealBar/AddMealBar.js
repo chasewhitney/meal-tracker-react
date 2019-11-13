@@ -39,11 +39,16 @@ class AddMealBar extends Component {
     const config = { params: { searchQuery: searchTerm } };
     const res = await axios.get("/api/instant", config);
 
-    console.log("fetchDropdownList setting state.dropdownData", res.data);
-    this.setState({ dropdownData: res.data });
+    console.log("fDL received:", res);
+    if (res.data.message) {
+      console.log("Error received from API:", res.data.message);
+    } else {
+      console.log("fetchDropdownList setting state.dropdownData", res.data);
+      this.setState({ dropdownData: res.data });
+    }
   };
 
-  // Wait 300ms for user to stop entering text into search input before querying API
+  // Wait to send query to API until 300ms after last search input change
   debounceFetchDropdown = _.debounce(searchTerm => {
     this.fetchDropdownList(searchTerm);
   }, 300);
