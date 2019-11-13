@@ -12,7 +12,7 @@ class Landing extends Component {
     }
     return (
       <S.LandingContainer>
-        <h1>WELCOME</h1>
+        <p>Welcome! Please sign in to start tracking!</p>
       </S.LandingContainer>
     );
   }

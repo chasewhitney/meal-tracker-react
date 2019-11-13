@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { NewMealFormFields } from "../../fields/fields.js";
 import MealField from "../MealField/MealField.js";
+import * as S from "./AddMealForm.jsx.js";
 
 const validate = values => {
   // console.log('validation values:', values);
@@ -48,18 +49,27 @@ const renderFields = fields => {
 
 let AddMealForm = props => {
   const { handleSubmit, submitting } = props;
-  console.log("HELLO" + props.mealToAdd.ToString);
+  console.log("In AddMealForm with mealToAdd: ", props.mealToAdd);
   return (
     <form onSubmit={handleSubmit(props.onFormSubmit)}>
+      {props.mealToAdd._id ? (
+        <S.Header>Edit Meal</S.Header>
+      ) : (
+        <S.Header>Add Meal</S.Header>
+      )}
       {renderFields(NewMealFormFields)}
-      <div>
-        <button type="button" disabled={submitting} onClick={props.onCancel}>
+      <S.ButtonDiv>
+        <S.CancelButton
+          type="button"
+          disabled={submitting}
+          onClick={props.onCancel}
+        >
           Cancel
-        </button>
-        <button type="submit" disabled={submitting}>
+        </S.CancelButton>
+        <S.SubmitButton type="submit" disabled={submitting}>
           Submit
-        </button>
-      </div>
+        </S.SubmitButton>
+      </S.ButtonDiv>
     </form>
   );
 };
