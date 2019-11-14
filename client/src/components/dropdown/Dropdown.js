@@ -23,8 +23,8 @@ class Dropdown extends Component {
   thereIsContentToRender = () => {
     if (this.props.content.all) {
       return (
-        this.props.content.branded.length != 0 ||
-        this.props.content.common.length != 0
+        this.props.content.branded.length !== 0 ||
+        this.props.content.common.length !== 0
       );
     } else {
       return null;

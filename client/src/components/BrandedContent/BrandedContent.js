@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./BrandedContent.jsx.js";
 
 const renderList = props => {
-  if (props.foodList.length != 0) {
+  if (props.foodList.length !== 0) {
     return props.foodList.map(item => {
       return (
         <S.BrandedCell

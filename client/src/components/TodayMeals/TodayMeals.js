@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import * as S from "./TodayMeals.jsx.js";
 import * as actions from "../../actions";
-import axios from "axios";
 
 export default connect(
   null,
