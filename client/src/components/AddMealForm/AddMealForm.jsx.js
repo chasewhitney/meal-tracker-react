@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../resources/styledComponentTemplates.js";
 
 export const ButtonDiv = styled.div`
   margin-top: -1.5rem;
@@ -7,29 +8,19 @@ export const ButtonDiv = styled.div`
   justify-content: flex-end;
 `;
 
-export const CancelButton = styled.button`
-  color: white;
-  border-radius: 4px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  margin: 0 0.3rem;
-  padding: 0.5rem;
-  background: rgb(202, 60, 60);
+export const CancelButton = styled(Button)`
+  background: #b42857;
 
   &:hover {
-    background: #a83131;
+    background: #8a1f43;
   }
 `;
 
-export const SubmitButton = styled.button`
-  color: white;
-  border-radius: 4px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  margin: 0 0.3rem;
-  padding: 0.5rem;
-  background: rgb(28, 184, 65);
+export const SubmitButton = styled(Button)`
+  background: #1f8a66;
 
   &:hover {
-    background: #199e39;
+    background: #1a7557;
   }
 `;
 

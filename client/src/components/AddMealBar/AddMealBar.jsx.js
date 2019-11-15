@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../resources/styledComponentTemplates.js";
 
 export const Inputs = styled.div`
   display: flex;
@@ -6,7 +7,7 @@ export const Inputs = styled.div`
   align-items: center;
   height: 5rem;
   border-bottom: 1px solid black;
-  padding: 3rem;
+  padding: 3rem 2rem;
 
   & > * {
     margin: 1rem;
@@ -31,6 +32,13 @@ export const ApiBox = styled.div`
   flex-direction: column;
 `;
 
-export const AddMealButton = styled.button`
+export const AddMealButton = styled(Button)`
+  background: #1f8a66;
+  padding: 0.6rem 0.5rem;
   margin-right: auto;
+  cursor: pointer;
+
+  &:hover {
+    background: #1a7557;
+  }
 `;

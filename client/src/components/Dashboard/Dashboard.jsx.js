@@ -14,20 +14,22 @@ export const Popup = Modal.styled`
 
 export const DashboardContainer = styled.div`
   background-color: #f8f8f8;
+  padding: 4rem;
 `;
 
 export const DashboardContent = styled.div`
   font-size: 1.5rem; //temp
   display: flex;
-  margin: 4rem auto;
+  margin: 0 auto;
+  padding: 2rem;
   background-color: white;
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0.5rem 1rem 5rem #363636;
   max-width: 117rem;
 `;
 
 export const Main = styled.div`
   width: 100%;
-
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
 `;

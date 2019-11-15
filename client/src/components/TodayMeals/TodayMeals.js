@@ -35,13 +35,17 @@ export default connect(
             <div>{item.fiber * item.servings}g fiber</div>
             <div>{item.sugar * item.servings}g sugar</div>
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
-            <div>
-              <button onClick={() => props.addMealToFavorites(item)}>
-                Favorite
-              </button>
-              <button onClick={() => props.onEdit(item)}>Edit</button>
-              <button onClick={() => props.onDelete(item._id)}>Delete</button>
-            </div>
+            <S.ButtonContainer>
+              <S.Button onClick={() => props.addMealToFavorites(item)}>
+                <img src={require("../../resources/icons/heart.png")} />
+              </S.Button>
+              <S.Button onClick={() => props.onEdit(item)}>
+                <img src={require("../../resources/icons/pencil.png")} />
+              </S.Button>
+              <S.Button onClick={() => props.onDelete(item._id)}>
+                <img src={require("../../resources/icons/bin.png")} />
+              </S.Button>
+            </S.ButtonContainer>
           </S.MealItem>
         );
       })}
