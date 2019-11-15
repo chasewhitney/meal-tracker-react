@@ -37,11 +37,18 @@ export const Button = styled.div`
   padding: 0;
   background-color: #28b485;
   border: 1px solid black;
-  margin: 5px;
   cursor: pointer;
 
   &:hover {
     background-color: #1f8a66;
+    color: #fff;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
   }
 
   & img {

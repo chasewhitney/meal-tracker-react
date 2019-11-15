@@ -28,6 +28,13 @@ export const FavItem = styled.div`
 
   &:hover {
     background-color: #1f8a66;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
   }
 
   & button {
