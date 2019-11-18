@@ -33,7 +33,7 @@ export const NetCell = styled(TotalCell)`
   }
 
   & div.green {
-    color: #28b485;
+    color: #006f46;
   }
 `;
 

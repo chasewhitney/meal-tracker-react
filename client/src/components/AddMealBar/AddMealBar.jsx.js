@@ -33,12 +33,12 @@ export const ApiBox = styled.div`
 `;
 
 export const AddMealButton = styled(Button)`
-  background: #1f8a66;
+  background: #00a266;
   padding: 0.6rem 0.5rem;
   margin-right: auto;
   cursor: pointer;
 
   &:hover {
-    background: #1a7557;
+    background: #006f46;
   }
 `;

@@ -1,14 +1,17 @@
 import styled from "styled-components";
+import img from "../../resources/icons/board-bg.jpeg";
 
 export const AppContainer = styled.div`
-  /* background-color: green; */
-  /* background-color: #f8f8f8; */
-  /* border: 15px solid red; */
+  background-image: url(${img});
+  background-size: cover;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  min-height: 100vh;
+  max-height: 100vh;
 `;
 
 export const ContentContainer = styled.div`
   flex-grow: 1;
-  /* background-color: yellow; */
+  display: flex;
 `;

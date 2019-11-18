@@ -20,9 +20,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ModalProvider>
-          <S.AppContainer>
+          <S.AppContainer className="AppContainer">
             <Header />
-            <S.ContentContainer>
+            <S.ContentContainer className="ContentContainer">
               <Route exact path="/" component={Landing} />
               <Route exact path="/dashboard" component={Dashboard} />
             </S.ContentContainer>

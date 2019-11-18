@@ -87,10 +87,10 @@ class Dashboard extends Component {
       return null;
     }
     return (
-      <S.DashboardContainer>
-        <S.DashboardContent>
+      <S.DashboardContainer className="DashboardContainer">
+        <S.DashboardContent className="DashboardContent">
           <Sidebar handleMealSubmit={this.handleMealSubmit} />
-          <S.Main>
+          <S.Main className="Main">
             <S.Popup
               isOpen={this.state.popupIsOpen}
               onBackgroundClick={this.toggleModal}

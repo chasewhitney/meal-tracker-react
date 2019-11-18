@@ -35,7 +35,7 @@ export default connect(
             <div>{item.fiber * item.servings}g fiber</div>
             <div>{item.sugar * item.servings}g sugar</div>
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
-            <S.ButtonContainer>
+            <S.ButtonContainer className="ButtonContainer">
               <S.Button onClick={() => props.addMealToFavorites(item)}>
                 <img src={require("../../resources/icons/heart.png")} />
               </S.Button>

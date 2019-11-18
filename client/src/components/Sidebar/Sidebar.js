@@ -21,7 +21,7 @@ export default connect(
     );
   } else {
     return (
-      <S.Sidebar>
+      <S.Sidebar className="Sidebar">
         <h1>Favorites</h1>
         {favorites.map(item => {
           return (

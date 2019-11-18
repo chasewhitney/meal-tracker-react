@@ -9,18 +9,18 @@ export const ButtonDiv = styled.div`
 `;
 
 export const CancelButton = styled(Button)`
-  background: #b42857;
+  background: #a2003c;
 
   &:hover {
-    background: #8a1f43;
+    background: #6f0029;
   }
 `;
 
 export const SubmitButton = styled(Button)`
-  background: #1f8a66;
+  background: #00a266;
 
   &:hover {
-    background: #1a7557;
+    background: #006f46;
   }
 `;
 

@@ -5,9 +5,8 @@ export const Tabs = styled.div`
   top: 3rem;
   left: 0;
   overflow: hidden;
-  color: red;
   width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.5rem 1rem 5rem #363636;
 
   display: flex;
   flex-direction: column;
@@ -16,8 +15,9 @@ export const Tabs = styled.div`
 export const Label = styled.label`
   color: black;
   cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 300;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
   padding: 2rem 0;
   width: 50%;
   background-color: white;
@@ -96,7 +96,7 @@ export const FocusBar = styled.div.attrs(({ width, tab }) => ({
     bottom: 0;
     left: ${props => props.left}px;
     right: ${props => props.right}px;
-    background-color: red;
+    background-color: #b42857;
     transition: inherit;
   }
 `;

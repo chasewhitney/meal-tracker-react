@@ -3,6 +3,6 @@ import * as S from "./Footer.jsx.js";
 
 export default class Footer extends Component {
   render() {
-    return <S.Footer />;
+    return <S.Footer className="Footer" />;
   }
 }

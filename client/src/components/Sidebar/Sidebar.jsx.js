@@ -19,15 +19,16 @@ export const Sidebar = styled.div`
 `;
 
 export const FavItem = styled.div`
+  color: white;
   border: 1px solid black;
   position: relative;
   padding: 0;
   cursor: pointer;
   border-radius: 0.3rem;
-  background-color: #28b485;
+  background-color: #00a266;
 
   &:hover {
-    background-color: #1f8a66;
+    background-color: #006f46;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }

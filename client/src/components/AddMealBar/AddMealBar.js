@@ -7,7 +7,11 @@ import { DaysOfTheWeek } from "../../fields/fields.js";
 import Dropdown from "../Dropdown/Dropdown.js";
 
 class AddMealBar extends Component {
-  state = { searchTerm: "", dropdownData: {}, dropdownIsFocused: false };
+  state = {
+    searchTerm: "wheaties",
+    dropdownData: {},
+    dropdownIsFocused: false
+  };
 
   componentDidUpdate() {
     if (this.state.searchTerm.length < 3 && this.state.dropdownData.all) {
@@ -61,14 +65,14 @@ class AddMealBar extends Component {
   // Clear searchbar input and hidedropdown if dropdown loses focus
   toggleFocus = () => {
     this.setState({ dropdownIsFocused: !this.state.dropdownIsFocused });
-    setTimeout(
-      function() {
-        if (!this.state.dropdownIsFocused) {
-          this.clearSearchInput();
-        }
-      }.bind(this),
-      100
-    );
+    // setTimeout(
+    //   function() {
+    //     if (!this.state.dropdownIsFocused) {
+    //       this.clearSearchInput();
+    //     }
+    //   }.bind(this),
+    //   100
+    // );
   };
 
   // Clear searchbar input and hide dropdown if user presses ESC key

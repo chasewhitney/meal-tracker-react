@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Modal from "styled-react-modal";
+import img from "../../resources/icons/board-bg.jpeg";
 
 export const Popup = Modal.styled`
   /* width: 20rem; */
@@ -13,8 +14,9 @@ export const Popup = Modal.styled`
 `;
 
 export const DashboardContainer = styled.div`
-  background-color: #f8f8f8;
-  padding: 4rem;
+  padding: 5rem;
+  margin: auto;
+  width: 80%;
 `;
 
 export const DashboardContent = styled.div`
@@ -24,7 +26,7 @@ export const DashboardContent = styled.div`
   padding: 2rem;
   background-color: white;
   box-shadow: 0.5rem 1rem 5rem #363636;
-  max-width: 117rem;
+  width: 100%;
 `;
 
 export const Main = styled.div`

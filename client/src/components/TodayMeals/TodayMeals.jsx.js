@@ -22,7 +22,7 @@ export const TodayMeals = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   position: relative;
   left: 0;
@@ -35,9 +35,10 @@ export const ButtonContainer = styled.div`
 export const Button = styled.div`
   border-radius: 0.2rem;
   padding: 0;
-  background-color: #28b485;
+  background-color: #00a266;
   border: 1px solid black;
   cursor: pointer;
+  margin: 0.3rem !important;
 
   &:hover {
     background-color: #1f8a66;

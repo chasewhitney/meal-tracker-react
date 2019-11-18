@@ -5,13 +5,15 @@ const renderList = props => {
   if (props.foodList.length !== 0) {
     return props.foodList.map(item => {
       return (
-        <S.CommonCell
-          key={item.food_name}
-          onClick={() => this.props.onClick(item.food_name, "common")}
-        >
-          <img src={item.photo.thumb} alt="Food" />
-          <span>{item.food_name}</span>
-        </S.CommonCell>
+        <S.CellContainer>
+          <S.CommonCell
+            key={item.food_name}
+            onClick={() => this.props.onClick(item.food_name, "common")}
+          >
+            <img src={item.photo.thumb} alt="Food" />
+            <span>{item.food_name}</span>
+          </S.CommonCell>
+        </S.CellContainer>
       );
     });
   } else {
@@ -21,9 +23,9 @@ const renderList = props => {
 
 export default props => {
   return (
-    <S.CellContainer>
-      <S.Header>Common</S.Header>
+    <S.ContentContainer>
+      <S.Header>Common Content</S.Header>
       {renderList(props)}
-    </S.CellContainer>
+    </S.ContentContainer>
   );
 };

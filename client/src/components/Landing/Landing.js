@@ -11,8 +11,10 @@ class Landing extends Component {
       this.props.history.push("/Dashboard");
     }
     return (
-      <S.LandingContainer>
-        <p>Welcome! Please sign in to start tracking!</p>
+      <S.LandingContainer className="LandingContainer">
+        <div className="LandingClasslessDiv">
+          Welcome! Please sign in to start tracking!
+        </div>
       </S.LandingContainer>
     );
   }
