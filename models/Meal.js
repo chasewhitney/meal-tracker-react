@@ -1,6 +1,6 @@
 //// User model ////
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const mealSchema = new Schema({
@@ -14,10 +14,10 @@ const mealSchema = new Schema({
   fat: Number,
   fiber: Number,
   sugar: Number,
-  date: Date,
+  date: String,
   img: String
-})
+});
 
-const Meal = mongoose.model('meals', mealSchema);
+const Meal = mongoose.model("meals", mealSchema);
 
 module.exports = Meal;

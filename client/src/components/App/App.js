@@ -10,6 +10,7 @@ import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import Landing from "../Landing/Landing.js";
 import Dashboard from "../Dashboard/Dashboard.js";
+import History from "../History/History.js";
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
             <S.ContentContainer className="ContentContainer">
               <Route exact path="/" component={Landing} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/history" component={History} />
             </S.ContentContainer>
             <Footer />
           </S.AppContainer>

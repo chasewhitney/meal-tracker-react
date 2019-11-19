@@ -1,22 +1,10 @@
 import styled from "styled-components";
-import Modal from "styled-react-modal";
 import img from "../../resources/icons/board-bg.jpeg";
-
-export const Popup = Modal.styled`
-  /* width: 20rem; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #f8f8f8;
-  padding: 10px;
-  box-shadow: .4rem .6rem .8rem #363636;
-`;
 
 export const DashboardContainer = styled.div`
   padding: 5rem;
   margin: auto;
-  width: 90%;
+  width: 80%;
 `;
 
 export const DashboardContent = styled.div`
@@ -34,4 +22,22 @@ export const Main = styled.div`
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
+`;
+
+export const Sidebar = styled.div`
+  flex: 1 0 20%;
+  flex-direction: column;
+  border-right: 1px solid grey;
+  min-height: 80vh;
+  align-items: center;
+  text-align: center;
+
+  & * {
+    margin: 1rem;
+  }
+
+  & h1 {
+    border-bottom: 1px solid black;
+    padding: 1.05rem;
+  }
 `;
