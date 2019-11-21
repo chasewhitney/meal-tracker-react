@@ -7,7 +7,7 @@ import * as S from "./Header.jsx.js";
 
 class Header extends Component {
   renderAuthLink() {
-    console.log("Header-auth:", this.props.auth);
+    // console.log("Header-auth:", this.props.auth);
     switch (this.props.auth) {
       case null:
         return;

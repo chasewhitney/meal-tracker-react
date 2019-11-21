@@ -19,3 +19,12 @@ export const DaysOfTheWeek = [
   "Friday",
   "Saturday"
 ];
+
+export const TotalsToCalculate = [
+  "fat",
+  "carbs",
+  "fiber",
+  "calories",
+  "protein",
+  "sugar"
+];

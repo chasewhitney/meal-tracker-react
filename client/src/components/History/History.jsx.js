@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import img from "../../resources/icons/board-bg.jpeg";
 
 export const HistoryContainer = styled.div`
   padding: 5rem;

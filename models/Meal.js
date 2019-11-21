@@ -14,7 +14,7 @@ const mealSchema = new Schema({
   fat: Number,
   fiber: Number,
   sugar: Number,
-  date: String,
+  date: Date,
   img: String
 });
 
