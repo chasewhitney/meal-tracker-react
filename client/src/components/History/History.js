@@ -106,8 +106,8 @@ class History extends Component {
       return null;
     }
     return (
-      <S.DashboardContainer className="DashboardContainer">
-        <S.DashboardContent className="DashboardContent">
+      <S.HistoryContainer className="DashboardContainer">
+        <S.HistoryContent className="DashboardContent">
           <S.Sidebar>
             <h1>Net Carb History</h1>
             {this.renderHistory()}
@@ -115,8 +115,8 @@ class History extends Component {
           <S.Main className="Main">
             <h1 style={{ margin: "auto" }}> Under Construction </h1>
           </S.Main>
-        </S.DashboardContent>
-      </S.DashboardContainer>
+        </S.HistoryContent>
+      </S.HistoryContainer>
     );
   }
 }

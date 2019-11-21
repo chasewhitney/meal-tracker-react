@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import img from "../../resources/icons/board-bg.jpeg";
 
-export const DashboardContainer = styled.div`
+export const HistoryContainer = styled.div`
   padding: 5rem;
   margin: auto;
   width: 80%;
 `;
 
-export const DashboardContent = styled.div`
+export const HistoryContent = styled.div`
   font-size: 1.5rem; //temp
   display: flex;
   margin: 0 auto;

@@ -37,13 +37,22 @@ export default connect(
             <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
             <S.ButtonContainer className="ButtonContainer">
               <S.Button onClick={() => props.addMealToFavorites(item)}>
-                <img src={require("../../resources/icons/heart.png")} />
+                <img
+                  src={require("../../resources/icons/heart.png")}
+                  alt="Add to favorites"
+                />
               </S.Button>
-              <S.Button onClick={() => props.onEdit(item)}>
-                <img src={require("../../resources/icons/pencil.png")} />
+              <S.Button onClick={() => props.onEdit(item)} toolTip="Edit">
+                <img
+                  src={require("../../resources/icons/pencil.png")}
+                  alt="Edit"
+                />
               </S.Button>
               <S.Button onClick={() => props.onDelete(item._id)}>
-                <img src={require("../../resources/icons/bin.png")} />
+                <img
+                  src={require("../../resources/icons/bin.png")}
+                  alt="Delete entry"
+                />
               </S.Button>
             </S.ButtonContainer>
           </S.MealItem>

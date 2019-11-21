@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Modal from "styled-react-modal";
-import img from "../../resources/icons/board-bg.jpeg";
 
 export const Popup = Modal.styled`
   /* width: 20rem; */
