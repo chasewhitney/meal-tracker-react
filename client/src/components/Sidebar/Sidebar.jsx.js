@@ -5,6 +5,7 @@ export const Sidebar = styled.div`
   flex-direction: column;
   border-right: 1px solid grey;
   min-height: 80vh;
+  padding: 0.5rem;
   align-items: center;
   text-align: center;
 
@@ -13,8 +14,12 @@ export const Sidebar = styled.div`
   }
 
   & h1 {
+    margin: 0;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-bottom: 1px solid black;
-    padding: 1.05rem;
   }
 `;
 

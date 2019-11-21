@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Button } from "../../resources/styledComponentTemplates.js";
 
 export const Inputs = styled.div`
+  height: 6rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: start;
   align-items: center;
-  height: 5rem;
   border-bottom: 1px solid black;
-  padding: 3rem 2rem;
 
   & > * {
     margin: 1rem;

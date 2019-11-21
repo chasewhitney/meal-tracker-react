@@ -8,7 +8,7 @@ export const Popup = Modal.styled`
   justify-content: center;
   flex-direction: column;
   background-color: #f8f8f8;
-  padding: 10px;
+  padding: 1rem;
   box-shadow: .4rem .6rem .8rem #363636;
 `;
 
@@ -19,7 +19,7 @@ export const DashboardContainer = styled.div`
 `;
 
 export const DashboardContent = styled.div`
-  font-size: 1.5rem; //temp
+  font-size: 1.5rem;
   display: flex;
   margin: 0 auto;
   padding: 2rem;

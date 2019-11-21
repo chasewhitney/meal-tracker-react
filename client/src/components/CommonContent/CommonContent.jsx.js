@@ -1,18 +1,5 @@
 import styled from "styled-components";
 
-export const CommonCell = styled.div`
-  display: flex;
-  align-items: center;
-  color: black;
-
-  font-size: 1.5rem;
-
-  & img {
-    height: 40px;
-    margin-right: 2rem;
-  }
-`;
-
 export const ContentContainer = styled.div`
   pointer-events: auto;
   background-color: #ffffff;
@@ -33,5 +20,25 @@ export const CellContainer = styled.div`
 
   &:hover {
     background-color: #e3e3e3;
+  }
+`;
+
+export const CommonCell = styled.div`
+  height: 4rem;
+  font-size: 1.5rem;
+  color: black;
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+
+  & img {
+    max-width: 4rem;
+    margin-right: 2rem;
+    grid-column: 1 / 2;
+  }
+
+  & span {
+    grid-column: 2 / 3;
   }
 `;

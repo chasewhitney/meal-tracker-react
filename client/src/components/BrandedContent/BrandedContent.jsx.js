@@ -24,21 +24,22 @@ export const CellContainer = styled.div`
 `;
 
 export const BrandedCell = styled.div`
-  color: black;
-
+  height: 4rem;
   font-size: 1.5rem;
-
-  display: grid;
-  grid-template-columns: min-content 1fr min-content;
+  color: black;
   align-items: center;
   justify-items: start;
 
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+
   & img {
-    height: 40px;
+    max-width: 4rem;
     margin-right: 2rem;
     grid-row: 1 / 3;
     grid-column: 1 / 2;
   }
+
   & .name {
     grid-row: 1 / 2;
     grid-column: 2 /3;

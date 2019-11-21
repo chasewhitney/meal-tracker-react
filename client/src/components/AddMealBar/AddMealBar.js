@@ -8,7 +8,7 @@ import Dropdown from "../Dropdown/Dropdown.js";
 
 class AddMealBar extends Component {
   state = {
-    searchTerm: "wheaties",
+    searchTerm: "",
     dropdownData: {},
     dropdownIsFocused: false
   };
@@ -32,7 +32,6 @@ class AddMealBar extends Component {
     this.setState({ searchTerm });
 
     if (searchTerm.length >= 3) {
-      // console.log(searchTerm);
       this.debounceFetchDropdown(searchTerm);
     }
   };
