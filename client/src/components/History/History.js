@@ -43,7 +43,16 @@ class History extends Component {
             return (
               <div key={dateObject.date}>
                 {moment(dateObject.date).format("MM/DD/YYYY")}:{" "}
-                {dateObject.dailyTotals.netCarbs}g
+                <span
+                  style={{
+                    color:
+                      dateObject.dailyTotals.netCarbs > 30
+                        ? "#b42857"
+                        : "#006f46"
+                  }}
+                >
+                  {dateObject.dailyTotals.netCarbs}g
+                </span>
               </div>
             );
           })}
