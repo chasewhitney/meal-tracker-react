@@ -64,14 +64,14 @@ class AddMealBar extends Component {
   // Clear searchbar input and hidedropdown if dropdown loses focus
   toggleFocus = () => {
     this.setState({ dropdownIsFocused: !this.state.dropdownIsFocused });
-    // setTimeout(
-    //   function() {
-    //     if (!this.state.dropdownIsFocused) {
-    //       this.clearSearchInput();
-    //     }
-    //   }.bind(this),
-    //   100
-    // );
+    setTimeout(
+      function() {
+        if (!this.state.dropdownIsFocused) {
+          this.clearSearchInput();
+        }
+      }.bind(this),
+      100
+    );
   };
 
   // Clear searchbar input and hide dropdown if user presses ESC key

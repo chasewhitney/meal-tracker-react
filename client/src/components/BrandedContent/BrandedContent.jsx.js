@@ -17,6 +17,7 @@ export const CellContainer = styled.div`
   margin: 0;
   padding: 0.3rem 0.6rem;
   border-bottom: 0.1rem solid black;
+  max-width: 37.6rem;
 
   &:hover {
     background-color: #e3e3e3;
@@ -27,29 +28,37 @@ export const BrandedCell = styled.div`
   height: 4rem;
   font-size: 1.5rem;
   color: black;
-  align-items: center;
-  justify-items: start;
+  display: flex;
+  justify-content: space-between;
+`;
 
-  display: grid;
-  grid-template-columns: min-content 1fr min-content;
+export const Image = styled.img`
+  max-width: 4rem;
+  margin-right: 2rem;
+`;
 
-  & img {
-    max-width: 4rem;
-    margin-right: 2rem;
-    grid-row: 1 / 3;
-    grid-column: 1 / 2;
-  }
+export const NameAndBrandContainer = styled.div`
+  width: 100%;
+`;
 
-  & .name {
-    grid-row: 1 / 2;
-    grid-column: 2 /3;
-  }
-  & .brand {
-    grid-row: 2 / 3;
-    grid-column: 2 /3;
-  }
-  & .cal {
-    grid-row: 1 / 3;
-    grid-column: 3 / 4;
-  }
+export const NameCell = styled.div`
+  max-width: 26.8rem;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+export const BrandCell = styled.div`
+  font-size: 1.2rem;
+  max-width: 26.8rem;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-style: italic;
+`;
+
+export const CalsCell = styled.div`
+  text-align: right;
 `;

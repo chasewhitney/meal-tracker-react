@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from "../../resources/icons/board-bg.jpeg";
+import img from "../../resources/images/board-bg.jpeg";
 
 export const AppContainer = styled.div`
   background-image: url(${img});

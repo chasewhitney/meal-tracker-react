@@ -12,13 +12,15 @@ const renderList = props => {
               props.onClick(item.nix_item_id, "branded");
             }}
           >
-            <img src={item.photo.thumb} alt="Food" />
-            <span className="name">{item.food_name}</span>
-            <span className="brand">
-              {item.brand_name}, {item.serving_qty.toPrecision(2)}
-              {item.serving_unit}
-            </span>
-            <span className="cal">{Math.round(item.nf_calories)} cal</span>
+            <S.Image src={item.photo.thumb} alt="Food" />
+            <S.NameAndBrandContainer>
+              <S.NameCell>{item.food_name}</S.NameCell>
+              <S.BrandCell>
+                {item.brand_name}, {item.serving_qty.toPrecision(2)}
+                {item.serving_unit}
+              </S.BrandCell>
+            </S.NameAndBrandContainer>
+            <S.CalsCell>{Math.round(item.nf_calories)} cal</S.CalsCell>
           </S.BrandedCell>
         </S.CellContainer>
       );

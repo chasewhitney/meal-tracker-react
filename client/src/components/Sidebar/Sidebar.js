@@ -16,7 +16,7 @@ export default connect(
     return (
       <S.Sidebar>
         <h1>Favorites</h1>
-        No favorites added yet
+        <p>No favorites added yet</p>
       </S.Sidebar>
     );
   } else {
