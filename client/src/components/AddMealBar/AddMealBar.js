@@ -105,7 +105,7 @@ class AddMealBar extends Component {
         <S.AddMealButton onClick={() => this.props.handleAddMealClick()}>
           Add Custom Entry
         </S.AddMealButton>
-        <div className="date">{this.showDate()}</div>
+        <S.DateBox>{this.showDate()}</S.DateBox>
       </S.Inputs>
     );
   }

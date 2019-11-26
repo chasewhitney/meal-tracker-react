@@ -42,7 +42,7 @@ class Header extends Component {
   render() {
     return (
       <S.HeaderContainer className="HeaderContainer">
-        <S.Logo to={this.props.auth ? "/dashboard" : "/"}>FoodTracker</S.Logo>
+        <S.Logo to={this.props.auth ? "/dashboard" : "/"}>MealTracker</S.Logo>
         <S.NavContainer className="NavContainer">
           {this.renderNavLinks()}
           <S.NavItem className="NavItem">{this.renderAuthLink()}</S.NavItem>

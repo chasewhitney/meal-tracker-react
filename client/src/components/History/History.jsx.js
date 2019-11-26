@@ -18,9 +18,10 @@ export const HistoryContent = styled.div`
 
 export const Main = styled.div`
   width: 100%;
-  padding: 0.5rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
+  text-align: center;
 `;
 
 export const Sidebar = styled.div`

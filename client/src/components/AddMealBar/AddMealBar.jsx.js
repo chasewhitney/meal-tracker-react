@@ -3,7 +3,7 @@ import { Button } from "../../resources/styledComponentTemplates.js";
 
 export const Inputs = styled.div`
   height: 6rem;
-  padding: 0 2rem;
+  padding: 0 2rem 1rem 2rem;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -12,10 +12,11 @@ export const Inputs = styled.div`
   & > * {
     margin: 1rem;
   }
+`;
 
-  & .date {
-    font-size: 2.5rem;
-  }
+export const DateBox = styled.div`
+  font-size: 2.5rem;
+  text-align: center;
 `;
 
 export const ApiSearch = styled.input`

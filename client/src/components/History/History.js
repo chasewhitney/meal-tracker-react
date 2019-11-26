@@ -73,7 +73,7 @@ class History extends Component {
             {this.renderHistory()}
           </S.Sidebar>
           <S.Main className="Main">
-            <h1 style={{ margin: "auto" }}> Under Construction </h1>
+            <h1>Under Construction</h1>
           </S.Main>
         </S.HistoryContent>
       </S.HistoryContainer>
