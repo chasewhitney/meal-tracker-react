@@ -129,15 +129,20 @@ module.exports = app => {
   // TODO - send ordered by descending dates
   app.get("/meals/getAll", function(req, res, next) {
     var username = req.user.username;
-    Meal.find({ username: username }, function(err, data) {
-      if (err) {
-        console.log("get fullHistory.find -- failure");
-        next(err);
-      } else {
-        console.log("get fullHistory.find -- success");
-        console.log("data is:", data);
-        res.send(data);
+    Meal.find(
+      { username: username },
+      null,
+      { sort: { date: "descending" } },
+      function(err, data) {
+        if (err) {
+          console.log("get fullHistory.find -- failure");
+          next(err);
+        } else {
+          console.log("get fullHistory.find -- success");
+          console.log("data is:", data);
+          res.send(data);
+        }
       }
-    });
+    );
   });
 };

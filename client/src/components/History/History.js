@@ -8,74 +8,29 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as S from "./History.jsx.js";
 import moment from "moment";
-import { TotalsToCalculate } from "../../fields/fields.js";
+import { HistoryController } from "../../utils/historyController";
 
 class History extends Component {
   state = { fullHistory: [] };
 
   async componentDidMount() {
-    this.fetchAllMeals();
+    this.buildHistory();
   }
 
-  // Get meals from the database that were entered today
-  fetchAllMeals = async () => {
+  buildHistory = async () => {
+    // Get all meal entries from database
     const res = await axios.get("/meals/getAll");
     let { data } = res;
-    let sortedHistory = [];
 
-    // sortedHistory becomes an array of objects:
-    // {
-    //   date: date of entry,
-    //   entries: meals entered that day,
-    //   totals: nutrient totals for that day
-    // }
+    // Create array of objects containing all meal entries sorted by date, with
+    // nutrient totals for each day
+    // [ { date: "", mealEntries: [], dailyTotals: [] }, ... ]
+    let sortedHistoryData = HistoryController.groupByDate(data)
+      .objToArray()
+      .createDailyTotals().dataOut;
 
-    data.forEach((v, i) => this.sortByDate(v, sortedHistory));
-
-    console.log("sortedHistory ===", sortedHistory);
-    console.log("TotalsToCalculate ===", TotalsToCalculate);
-
-    sortedHistory.forEach((v, i) => this.calculateDailyTotals(v));
-
-    console.log("sortedHistory with totals:", sortedHistory);
-
-    this.setState({ fullHistory: sortedHistory });
-  };
-
-  // Sorts history by date
-  sortByDate = (v, sortedHistory) => {
-    let index = this.findWithProp(sortedHistory, "date", v.date); //array, property, value
-    if (index === -1) {
-      sortedHistory.push({ date: v.date, entries: [v] });
-    } else {
-      sortedHistory[index].entries.push(v);
-    }
-  };
-
-  // Returns index where array[index][property] = value, or -1;
-  findWithProp = (array, property, value) => {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i][property] === value) {
-        return i;
-      }
-    }
-    return -1;
-  };
-
-  calculateDailyTotals = dateObject => {
-    dateObject.totals = {};
-    dateObject.entries.sum = function(prop) {
-      var total = 0;
-      for (var i = 0; i < this.length; i++) {
-        total += this[i][prop];
-      }
-      return total;
-    };
-    TotalsToCalculate.forEach((v, i) => {
-      dateObject.totals[v] = dateObject.entries.sum(v);
-    });
-    dateObject.totals.netCarbs =
-      dateObject.totals.carbs - dateObject.totals.fiber;
+    console.log("Setting fullHistory state:", sortedHistoryData);
+    this.setState({ fullHistory: sortedHistoryData });
   };
 
   renderHistory = () => {
@@ -88,17 +43,13 @@ class History extends Component {
             return (
               <div key={dateObject.date}>
                 {moment(dateObject.date).format("MM/DD/YYYY")}:{" "}
-                {dateObject.totals.netCarbs}g
+                {dateObject.dailyTotals.netCarbs}g
               </div>
             );
           })}
         </div>
       );
     }
-  };
-
-  sayHi = () => {
-    console.log("HELLO!!!!!!!!!!!!!!!!!!!!!!");
   };
 
   render() {
