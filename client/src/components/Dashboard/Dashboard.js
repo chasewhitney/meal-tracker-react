@@ -93,7 +93,6 @@ class Dashboard extends Component {
           <S.Main className="Main">
             <S.Popup
               isOpen={this.state.popupIsOpen}
-              onBackgroundClick={this.toggleModal}
               onEscapeKeydown={this.toggleModal}
             >
               <AddMealForm
