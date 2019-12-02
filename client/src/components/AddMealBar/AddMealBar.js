@@ -4,7 +4,7 @@ import axios from "axios";
 import _ from "lodash";
 
 import { DaysOfTheWeek } from "../../fields/fields.js";
-import Dropdown from "../Dropdown/Dropdown.js";
+import Dropdown from "../ApiDropdown/ApiDropdown.js";
 
 class AddMealBar extends Component {
   state = {

@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as S from "./Dropdown.jsx.js";
+import * as S from "./ApiDropdown.jsx.js";
 import * as actions from "../../actions";
 
 import CommonContent from "../CommonContent/CommonContent.js";
