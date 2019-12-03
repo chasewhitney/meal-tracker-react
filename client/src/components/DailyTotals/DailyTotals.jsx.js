@@ -13,7 +13,7 @@ export const TotalsHeader = styled.div`
   font-size: 2.5rem;
   margin-left: 2rem;
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     font-size: 2rem;
   }
 `;
