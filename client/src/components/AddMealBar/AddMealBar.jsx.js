@@ -22,6 +22,7 @@ export const DateBox = styled.div`
 export const ApiSearch = styled.input`
   width: 100%;
   line-height: 2.8rem;
+  padding-left: 0.5rem;
 `;
 
 export const ApiBox = styled.div`

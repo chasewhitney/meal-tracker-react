@@ -5,11 +5,8 @@ const renderList = props => {
   if (props.foodList.length !== 0) {
     return props.foodList.map(item => {
       return (
-        <S.CellContainer>
-          <S.CommonCell
-            key={item.food_name}
-            onClick={() => this.props.onClick(item.food_name, "common")}
-          >
+        <S.CellContainer key={item.food_name}>
+          <S.CommonCell onClick={() => props.onClick(item.food_name, "common")}>
             <img src={item.photo.thumb} alt="Food" />
             <span>{item.food_name}</span>
           </S.CommonCell>

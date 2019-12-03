@@ -91,7 +91,7 @@ class AddMealBar extends Component {
           tabIndex="0"
         >
           <S.ApiSearch
-            placeholder="Add Entry From Food Database"
+            placeholder="Add Entry From Nutritionix Database"
             value={this.state.searchTerm}
             onChange={this.handleInputChange}
             autoComplete="off"

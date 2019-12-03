@@ -5,9 +5,8 @@ const renderList = props => {
   if (props.foodList.length !== 0) {
     return props.foodList.map(item => {
       return (
-        <S.CellContainer>
+        <S.CellContainer key={item.nix_item_id}>
           <S.BrandedCell
-            key={item.nix_item_id}
             onClick={() => {
               props.onClick(item.nix_item_id, "branded");
             }}

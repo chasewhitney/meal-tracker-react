@@ -17,9 +17,11 @@ export const CellContainer = styled.div`
   margin: 0;
   padding: 0.3rem 0.6rem;
   border-bottom: 0.1rem solid black;
+  max-width: 37.6rem;
 
   &:hover {
     background-color: #e3e3e3;
+    cursor: pointer;
   }
 `;
 
@@ -27,18 +29,17 @@ export const CommonCell = styled.div`
   height: 4rem;
   font-size: 1.5rem;
   color: black;
+
+  display: flex;
+  justify-content: start;
   align-items: center;
 
-  display: grid;
-  grid-template-columns: min-content 1fr;
-
   & img {
+    max-height: 4rem;
     max-width: 4rem;
     margin-right: 2rem;
-    grid-column: 1 / 2;
   }
 
   & span {
-    grid-column: 2 / 3;
   }
 `;

@@ -7,6 +7,7 @@ export const Tabs = styled.div`
   overflow: hidden;
   width: 100%;
   box-shadow: 0.5rem 1rem 5rem #363636;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 
   display: flex;
   flex-direction: column;

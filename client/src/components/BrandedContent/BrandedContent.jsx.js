@@ -21,6 +21,7 @@ export const CellContainer = styled.div`
 
   &:hover {
     background-color: #e3e3e3;
+    cursor: pointer;
   }
 `;
 
@@ -30,9 +31,11 @@ export const BrandedCell = styled.div`
   color: black;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Image = styled.img`
+  max-height: 4rem;
   max-width: 4rem;
   margin-right: 2rem;
 `;

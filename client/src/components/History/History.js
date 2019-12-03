@@ -1,8 +1,5 @@
 //// Landing page after login ////
 
-//////// TODO - REFACTOR DB OBJECT TO SORTED HISTORY OBJECT LOGIC ////////////
-//////// TODO - CODE COMMENTS ////////////////////////////////////////////////
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -22,6 +19,7 @@ class History extends Component {
     const res = await axios.get("/meals/getAll");
     let { data } = res;
 
+    // (Extention methods for fun)
     // Create array of objects containing all meal entries sorted by date, with
     // nutrient totals for each day
     // [ { date: "", mealEntries: [], dailyTotals: [] }, ... ]

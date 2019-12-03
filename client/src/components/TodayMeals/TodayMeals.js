@@ -15,26 +15,40 @@ export default connect(
       {props.todayMeals.map(item => {
         return (
           <S.MealItem key={item._id}>
-            <div style={{ display: "flex" }}>
-              <img
-                style={{ height: "50px", marginRight: "2rem" }}
-                src={item.img}
-                alt="Food item"
-              />
-              <div>
-                <div style={{ textAlign: "center" }}>{item.name}</div>
-                <div style={{ textAlign: "center" }}>
+            <S.ImageNameContainer className="ImageNameContainer">
+              <S.ImageContainer className="ImageContainer">
+                <S.MealImage
+                  className="MealImage"
+                  src={item.img}
+                  alt="Food item"
+                />
+              </S.ImageContainer>
+              <S.NameContainer className="NameContainer">
+                <div>{item.name}</div>
+                <S.Servings>
                   {item.servings} {item.servings > 1 ? "servings" : "serving"}
-                </div>
-              </div>
-            </div>
-            <div>{item.calories * item.servings} calories</div>
-            <div>{item.fat * item.servings}g fat</div>
-            <div>{item.protein * item.servings}g protein</div>
-            <div>{item.carbs * item.servings}g carbs </div>
-            <div>{item.fiber * item.servings}g fiber</div>
-            <div>{item.sugar * item.servings}g sugar</div>
-            <div>{(item.carbs - item.fiber) * item.servings}g net carbs</div>
+                </S.Servings>
+              </S.NameContainer>
+            </S.ImageNameContainer>
+            <S.NutritionCell>
+              {item.calories * item.servings} calories
+            </S.NutritionCell>
+            <S.NutritionCell>{item.fat * item.servings}g fat</S.NutritionCell>
+            <S.NutritionCell>
+              {item.protein * item.servings}g protein
+            </S.NutritionCell>
+            <S.NutritionCell>
+              {item.carbs * item.servings}g carbs{" "}
+            </S.NutritionCell>
+            <S.NutritionCell>
+              {item.fiber * item.servings}g fiber
+            </S.NutritionCell>
+            <S.NutritionCell>
+              {item.sugar * item.servings}g sugar
+            </S.NutritionCell>
+            <S.NutritionCell>
+              {(item.carbs - item.fiber) * item.servings}g net carbs
+            </S.NutritionCell>
             <S.ButtonContainer className="ButtonContainer">
               <S.Button onClick={() => props.addMealToFavorites(item)}>
                 <img

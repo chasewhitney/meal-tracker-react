@@ -1,24 +1,52 @@
 import styled from "styled-components";
 
-export const MealItem = styled.div`
-  display: grid;
-  grid-template-columns: 2fr repeat(8, 1fr);
-  padding: 1rem;
-  border-bottom: 1px solid grey;
-  justify-items: center;
-  align-items: center;
-
-  & div {
-    align-self: center;
-    padding: 0.2rem;
-    margin: 0.1rem;
-  }
-`;
-
 export const TodayMeals = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const MealItem = styled.div`
+  display: grid;
+  grid-template-columns: 2fr repeat(8, 1fr);
+  padding: 0 1rem;
+  border-bottom: 1px solid grey;
+  justify-items: center;
+  align-items: center;
+`;
+
+export const ImageNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  padding: 1rem;
+  margin-left: 1rem;
+`;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+  width: 5rem;
+`;
+
+export const NutritionCell = styled.div`
+  align-self: center;
+  padding: 0.2rem;
+  margin: 0.1rem;
+`;
+
+export const MealImage = styled.img`
+  max-width: 5rem;
+  margin-left: 0;
+  max-height: 6rem;
+  margin-right: 2rem;
+`;
+
+export const NameContainer = styled.div``;
+
+export const Servings = styled.div``;
 
 export const ButtonContainer = styled.div`
   display: flex;
