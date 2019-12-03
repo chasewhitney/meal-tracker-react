@@ -2,6 +2,8 @@
 
 ![Screenshot of the dashboard](client/src/resources/images/dashboard.png)
 
+![Screenshot of the dashboard](client/src/resources/images/dropdown.png)
+
 Meal-Tracker-React is a web application which allows the user to log in and track meals. Nutritional information can be entered manually, pulled from the Nutritionix API by means of a search bar and dropdown menu, or entered automatically from the Favorites list. The application will display daily calorie, fat, carbohydrate, fiber, sugar, protein, sodium, and net carb intake for users on a ketogenic diet. Historical daily totals are also available to view.
 
 ## Built With
