@@ -36,33 +36,33 @@ export default props => {
   const totals = calcDailyTotals(props.meals);
   return (
     <S.TodayTotals>
-      <h2>Daily Totals:</h2>
+      <S.TotalsHeader>Daily Totals:</S.TotalsHeader>
       <S.TotalCell>
-        <h3>Calories</h3>
+        <S.TotalCellHeader>Calories</S.TotalCellHeader>
         <div>{totals.calories}</div>
       </S.TotalCell>
       <S.TotalCell>
-        <h3>Fat</h3>
+        <S.TotalCellHeader>Fat</S.TotalCellHeader>
         <div>{totals.fat}g</div>
       </S.TotalCell>
       <S.TotalCell>
-        <h3>Protein</h3>
+        <S.TotalCellHeader>Protein</S.TotalCellHeader>
         <div>{totals.protein}g</div>
       </S.TotalCell>
       <S.TotalCell>
-        <h3>Carbs</h3>
+        <S.TotalCellHeader>Carbs</S.TotalCellHeader>
         <div>{totals.carbs}g</div>
       </S.TotalCell>
       <S.TotalCell>
-        <h3>Fiber</h3>
+        <S.TotalCellHeader>Fiber</S.TotalCellHeader>
         <div>{totals.fiber}g</div>
       </S.TotalCell>
       <S.TotalCell>
-        <h3>Sugar</h3>
+        <S.TotalCellHeader>Sugar</S.TotalCellHeader>
         <div>{totals.sugar}g</div>
       </S.TotalCell>
       <S.NetCell>
-        <h3>Net Carbs</h3>
+        <S.TotalCellHeader>Net Carbs</S.TotalCellHeader>
         <div className={getNetClass(totals)}>
           {totals.carbs - totals.fiber}g
         </div>

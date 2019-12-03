@@ -16,6 +16,15 @@ export const DashboardContainer = styled.div`
   padding: 5rem;
   margin: auto;
   width: 90%;
+
+  @media only screen and (max-width: 1200px) {
+    padding: 2.5rem;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 export const DashboardContent = styled.div`
@@ -26,6 +35,7 @@ export const DashboardContent = styled.div`
   background-color: white;
   box-shadow: 0.5rem 1rem 5rem #363636;
   width: 100%;
+  min-width: 90rem;
 `;
 
 export const Main = styled.div`

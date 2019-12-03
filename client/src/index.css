@@ -17,4 +17,5 @@ html {
 body {
   font-family: "Open Sans", "Roboto", Arial, Helvetica, sans-serif;
   color: #006f46;
+  min-width: 800px;
 }

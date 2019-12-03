@@ -7,10 +7,21 @@ export const TodayTotals = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
 
-  & h2 {
-    margin-left: 2rem;
+export const TotalsHeader = styled.div`
+  font-size: 2.5rem;
+  margin-left: 2rem;
+
+  @media only screen and (max-width: 900px) {
+    font-size: 2rem;
   }
+`;
+
+export const TotalCellHeader = styled.div`
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-bottom: 1px solid #006f46;
 `;
 
 export const TotalCell = styled.div`
@@ -18,11 +29,6 @@ export const TotalCell = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-
-  & div {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
 `;
 
 export const NetCell = styled(TotalCell)`

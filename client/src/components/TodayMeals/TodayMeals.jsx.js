@@ -21,13 +21,18 @@ export const ImageNameContainer = styled.div`
   width: 100%;
   padding: 1rem;
   margin-left: 1rem;
+  width: 18.8rem;
+
+  @media only screen and (max-width: 1200px) {
+    width: 16rem;
+  }
 `;
 
 export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 2rem;
+  margin-right: 1rem;
   width: 5rem;
 `;
 
@@ -41,7 +46,7 @@ export const MealImage = styled.img`
   max-width: 5rem;
   margin-left: 0;
   max-height: 6rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
 `;
 
 export const NameContainer = styled.div``;
