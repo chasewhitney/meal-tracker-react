@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as S from "./History.jsx.js";
 import moment from "moment";
-import { HistoryController } from "../../utils/historyController";
+import _ from "lodash";
+import { TotalsToCalculate } from "../../fields/fields.js";
 
 class History extends Component {
   state = { fullHistory: [] };
@@ -17,15 +18,24 @@ class History extends Component {
   buildHistory = async () => {
     // Get all meal entries from database
     const res = await axios.get("/meals/getAll");
-    let { data } = res;
+    const { data } = res;
 
-    // (Extention methods for fun)
-    // Create array of objects containing all meal entries sorted by date, with
-    // nutrient totals for each day
-    // [ { date: "", mealEntries: [], dailyTotals: [] }, ... ]
-    let sortedHistoryData = HistoryController.groupByDate(data)
-      .objToArray()
-      .createDailyTotals().dataOut;
+    const sortedHistoryData = data.reduce((t, v) => {
+      if (!(t[t.length - 1] && t[t.length - 1].date === v.date)) {
+        t.push({ date: v.date, dailyTotals: {} });
+      }
+
+      let dayTotals = t[t.length - 1].dailyTotals;
+
+      TotalsToCalculate.forEach(nutrient => {
+        if (!dayTotals[nutrient]) dayTotals[nutrient] = 0;
+        dayTotals[nutrient] += v[nutrient] * v.servings;
+      });
+
+      dayTotals.netCarbs = dayTotals.carbs + dayTotals.fiber;
+
+      return t;
+    }, []);
 
     console.log("Setting fullHistory state:", sortedHistoryData);
     this.setState({ fullHistory: sortedHistoryData });

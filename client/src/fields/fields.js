@@ -26,5 +26,6 @@ export const TotalsToCalculate = [
   "fiber",
   "calories",
   "protein",
-  "sugar"
+  "sugar",
+  "netCarbs"
 ];
