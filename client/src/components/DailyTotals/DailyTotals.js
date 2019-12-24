@@ -1,23 +1,41 @@
 import React from "react";
 import * as S from "./DailyTotals.jsx.js";
+import { TotalsToCalculate } from "../../fields/fields.js";
+// const calcDailyTotals = meals => {
+//   console.log("in calcDailyTotals with:", meals);
+//   const totals = {};
+//   meals.forEach(meal => {
+//     for (let prop in meal) {
+//       if (
+//         typeof meal[prop] === "number" &&
+//         prop !== "servings" &&
+//         prop !== "__v"
+//       ) {
+//         if (totals[prop]) {
+//           totals[prop] += meal[prop] * meal["servings"];
+//         } else {
+//           totals[prop] = meal[prop] * meal["servings"];
+//         }
+//       }
+//     }
+//   });
+//   console.log("Returning from calcDailyTotals:", totals);
+//   return totals;
+// };
 
 const calcDailyTotals = meals => {
-  const totals = {};
-  meals.forEach(meal => {
-    for (let prop in meal) {
-      if (
-        typeof meal[prop] === "number" &&
-        prop !== "servings" &&
-        prop !== "__v"
-      ) {
-        if (totals[prop]) {
-          totals[prop] += meal[prop] * meal["servings"];
-        } else {
-          totals[prop] = meal[prop] * meal["servings"];
-        }
-      }
-    }
-  });
+  console.log("in calcDailyTotals with:", meals);
+
+  const totals = meals.reduce((t, v) => {
+    TotalsToCalculate.forEach(nutrient => {
+      t[nutrient] = t[nutrient]
+        ? t[nutrient] + v[nutrient] * v.servings
+        : v[nutrient] * v.servings;
+    });
+    return t;
+  }, {});
+
+  console.log("Returning from calcDailyTotals:", totals);
   return totals;
 };
 
