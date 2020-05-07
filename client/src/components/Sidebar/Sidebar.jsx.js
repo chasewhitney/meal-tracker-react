@@ -35,21 +35,27 @@ export const FavItem = styled.div`
   &:hover {
     background-color: #006f46;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
   }
 
   &:active {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-    transform: translateY(0);
+
   }
 
   & button {
     position: absolute;
-    bottom: -0.7rem;
-    right: -0.7rem;
+    top: -.9rem;
+    right: -.7rem;
     font-size: 1rem;
     color: #b42857;
     font-weight: 900;
     cursor: pointer;
+    transform: translateY(2px);
+    width: 2rem;
+    height: 2rem;
+
+    &:hover {
+      background-color: pink;
+    }
   }
 `;
