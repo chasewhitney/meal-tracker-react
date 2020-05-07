@@ -1,0 +1,32 @@
+/// TODO /////////////////////////////////
+
+--- UI --------------------
+favorites collapses
+rounded decimals
+edit favorites
+responsive
+landing text styling
+
+--- Features -----------------
+user daily goals
+
+
+/// ROUTES ///////////////////////////////
+get api/instant
+get api/common
+get api/branded
+
+get auth/google
+get auth/google/callback
+
+get meals/today
+post meals/addMeal
+put meals/updateMeal
+delete meals/deleteMeal/:_id
+get meals/getAll
+
+post meals/addFavorite
+delete meals/delteMealFromFavorites/:_id
+
+get user/current_user
+get user/logout
